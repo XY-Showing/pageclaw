@@ -44,7 +44,26 @@ page-story.md
 
 Infer everything else (audience, tone, content hierarchy) directly from the page-story. Do not ask additional questions.
 
-Once you have the user's answers, write a brief summary in your response — the user's style choice, their reference (or that they skipped), and the target save path. This appears in the conversation history so teach-impeccable can read it without re-asking. Then **invoke the `teach-impeccable` skill using the Skill tool**, passing the target file path (`docs/plans/YYYY-MM-DD-<name>-design.md`) as the `config_file` argument. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
+**If the user provides a reference URL:**
+
+Fetch and analyze it before invoking teach-impeccable:
+
+1. **Fetch (max 2 pages)** — Use WebFetch on the provided URL. Then inspect `<nav>` links to identify site type: if it's a personal/academic page, the home page is sufficient; if it's a portfolio or company site, also fetch the single most relevant subpage (`/work`, `/about`, `/research`). Never fetch more than 2 pages.
+
+2. **Extract design signals from HTML/CSS** — focus only on visual language, not layout structure or section order:
+   - Color temperature (warm/neutral/cool) — from CSS color values
+   - Typography character (serif/sans/mono, weight contrast) — from `font-family`, `font-weight`
+   - Spatial density (compact/airy) — from `padding`, `line-height`
+   - Animation presence — from `transition`, `@keyframes` (signals static/minimal vs. motion-enhanced)
+   - Hover character — from `:hover` styles
+
+3. **Document** — write extracted signals in the design doc under a `### Reference` sub-section (e.g., "From reference: monospace type, tight line-height, neutral palette, minimal hover transitions"). Pass these signals as additional context to teach-impeccable and ui-ux-pro-max in Step 2.
+
+The reference shapes palette and typography bias only. It does not control section order, layout structure, or anything governed by the page-story or Constraints.
+
+---
+
+Once you have the user's answers (and have analyzed any reference URL), write a brief summary in your response — the user's style choice, reference signals extracted (or that they skipped), and the target save path. This appears in the conversation history so teach-impeccable can read it without re-asking. Then **invoke the `teach-impeccable` skill using the Skill tool**, passing the target file path (`docs/plans/YYYY-MM-DD-<name>-design.md`) as the `config_file` argument. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
 
 Save output to: `docs/plans/YYYY-MM-DD-<name>-design.md`
 
