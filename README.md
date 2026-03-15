@@ -2,9 +2,11 @@
 
 **Turn a markdown story into a polished static HTML page — with design intelligence baked in.**
 
-page-claw is a Claude Code skill that converts `page-story-*.md` files into production-ready, single-file static HTML pages. It orchestrates a full pipeline: design context gathering, evidence-based design system generation, implementation planning, and post-build quality review.
+page-claw is an AI agent skill that converts `page-story-*.md` files into production-ready, single-file static HTML pages. It orchestrates a full pipeline: design context gathering, evidence-based design system generation, implementation planning, and post-build quality review.
 
 Built for personal academic pages, professional profiles, and project pages. Designed to extend to any markdown-to-page use case.
+
+Works with Claude Code, Codex, Cursor, and any agent that supports markdown-based skill/instruction files.
 
 ---
 
@@ -35,30 +37,49 @@ Each step produces an intermediate artifact in `docs/plans/`. Design decisions a
 
 ## Prerequisites
 
-- [Claude Code](https://claude.ai/code) CLI
-- Python 3 (for ui-ux-pro-max design system generation)
+- Python 3 (for `ui-ux-pro-max` design system generation)
+- An AI coding agent (see Installation below)
 
 ---
 
 ## Installation
 
-Clone or copy the `skills/` directory into your project:
-
 ```bash
 git clone https://github.com/XY-Showing/pageclaw
-cp -r pageclaw/skills ~/.claude/skills/
 ```
 
-Or install individual skills selectively.
+Then copy the `skills/` directory to your agent's skills folder:
+
+### Claude Code
+
+```bash
+cp -r pageclaw/skills/* ~/.claude/skills/
+```
+
+Invoke with `/page-claw` in any Claude Code session.
+
+### Codex
+
+```bash
+cp -r pageclaw/skills/* ~/.agents/skills/
+```
+
+### Cursor
+
+Copy skill content into your `.cursor/rules/` directory as `.mdc` files, or reference them in your system prompt.
+
+### Other agents
+
+Each skill is a self-contained markdown file (`SKILL.md`). Copy the content into your agent's context, rules, or instruction file as needed.
 
 ---
 
 ## Quick Start
 
 1. Create a `page-story-*.md` file with your content (About, Publications, Links, etc.)
-2. Open Claude Code in the project directory
-3. Type `/page-claw`
-4. Follow the prompts — Claude will ask 3–4 design questions, generate a design system, write the plan, and build the page
+2. Open your agent in the project directory
+3. Invoke the `page-claw` skill
+4. Follow the prompts — the agent will ask 3–4 design questions, generate a design system, write the plan, and build the page
 
 **Output:** `index.html` — open directly in any browser, no server needed.
 
