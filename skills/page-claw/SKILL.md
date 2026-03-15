@@ -44,22 +44,23 @@ page-story.md
 2. **Aesthetic style** — After receiving the Q1 answer, generate 4 aesthetic style options dynamically based on the page-story content and Q1 direction. Each option must be a genuinely different CSS world — not a variation of the same mood. Format:
 
    > **Style Name** — one-sentence description
-   > `CSS signature: [3 key CSS properties that define this aesthetic]`
+   > `CSS signature: [3 key decorative CSS properties] · layout: [layout pattern]`
 
    Rules:
    - Options must be radically distinct from each other (e.g., Brutalism vs. Glassmorphism — not "cool minimal" vs. "refined minimal")
    - Include at least one unexpected direction for this subject matter
+   - Each option's layout pattern must differ from at least one other option — variety in layout is part of variety in aesthetic
    - If user says "none feel right," generate a new set
 
    Example format (content must vary per page-story + Q1 — these are illustrative, not a fixed menu):
    - **Brutalist Academic** — Raw grid, stark contrast, no decoration; reading-machine feel
-     `CSS: border: 3px solid currentColor; border-radius: 0; box-shadow: none`
+     `CSS: border: 3px solid currentColor; border-radius: 0; box-shadow: none · layout: asymmetric two-column grid, content bleeds full width`
    - **Glassmorphism Light** — Frosted glass panels, layered translucency, modern tech feel
-     `CSS: backdrop-filter: blur(12px); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3)`
+     `CSS: backdrop-filter: blur(12px); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3) · layout: stacked frosted cards, single centered column`
    - **Museum Whitespace** — Extreme negative space, caption-driven, artifact-display feel
-     `CSS: padding: 5rem 6rem; max-width: 640px; font-size: 0.85rem`
+     `CSS: padding: 5rem 6rem; max-width: 640px; font-size: 0.85rem · layout: narrow single column, wide margins, content as artifact`
    - **Terminal Scholar** — Monospace throughout, dark mode, command-line aesthetic
-     `CSS: font-family: 'JetBrains Mono', monospace; background: #0d1117; color: #c9d1d9`
+     `CSS: font-family: 'JetBrains Mono', monospace; background: #0d1117; color: #c9d1d9 · layout: sticky sidebar left, scrollable main right`
 
 3. **Reference design** — "Do you have a website or design you'd like to reference? (URL or screenshot — skip if not)"
 
@@ -103,6 +104,7 @@ Take the skill's output (palette, typography, style, effects, anti-patterns) as 
 **The design system must include a `### Aesthetic Implementation` section** that translates the Q2 aesthetic style choice into concrete CSS patterns. This is the bridge that makes the style choice executable — writing-plans reads it to generate specific CSS, not generic defaults.
 
 Required fields:
+- **Layout structure** — the page layout this aesthetic naturally produces: describe the HTML skeleton (e.g., sticky sidebar + scrollable main, single centered column, asymmetric grid). This comes directly from the layout descriptor in the Q2 CSS signature and drives the HTML structure in writing-plans.
 - **Surface treatment** — exact CSS for cards, panels, containers (border, shadow, border-radius, background)
 - **Typography expression** — heading vs. body distinction: weight ratio, size scale, letter-spacing
 - **Decorative rules** — what decoration is present / explicitly forbidden in this aesthetic
