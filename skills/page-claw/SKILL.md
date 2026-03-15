@@ -117,6 +117,8 @@ Required fields:
 
 These conventions control how certain page-story sections are visually rendered during Build (Step 4). Content (what links exist, what text says) is never changed — only the presentation.
 
+**Prose is the absence of a design decision.** Every content element has a semantic type — a record, a sequence, a label, a relationship. Plain text collapses all types into the same form. Before building, ask of each element: *what is this, structurally?* Then surface that structure visually. A sequence in time is a timeline. A categorical attribute is a badge. A name among others marks a relationship. These details are what separate a polished page from a generic one — default to prose only for genuinely unstructured narrative.
+
 **Links section** — A `## Links` section containing profile/social URLs must be rendered as icon-based links using inline SVG, not bare text. Each icon links to its URL with an accessible `aria-label`.
 
 Use [Simple Icons](https://simpleicons.org/) as the icon source via CDN:
