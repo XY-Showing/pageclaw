@@ -48,7 +48,7 @@ Each step produces an intermediate artifact in `docs/plans/`. Design decisions a
 git clone https://github.com/XY-Showing/pageclaw
 ```
 
-Then copy the `skills/` directory to your agent's skills folder:
+Then install for your agent:
 
 ### Claude Code
 
@@ -60,9 +60,11 @@ Invoke with `/page-claw` in any Claude Code session.
 
 ### Codex
 
-```bash
-cp -r pageclaw/skills/* ~/.agents/skills/
-```
+See [`.codex/INSTALL.md`](.codex/INSTALL.md) for symlink-based setup (supports `git pull` updates).
+
+### OpenCode
+
+See [`.opencode/INSTALL.md`](.opencode/INSTALL.md) for symlink-based setup (supports `git pull` updates).
 
 ### Cursor
 
