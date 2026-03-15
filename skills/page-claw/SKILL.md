@@ -1,6 +1,11 @@
 ---
 name: page-claw
-description: Use when converting a page-story markdown file into a static HTML page. Covers the full pipeline: design context gathering, design system generation, and implementation planning.
+description: "Use when converting a page-story markdown file into a static HTML page. Covers the full pipeline: design context gathering, design system generation, and implementation planning."
+argument-hint: "[page-story-file]"
+license: MIT
+metadata:
+  author: pageclaw
+  version: "1.0.0"
 ---
 
 # Page Claw
