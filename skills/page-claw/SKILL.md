@@ -37,12 +37,33 @@ page-story.md
 
 ## Step 1 — Design Context
 
-**Before invoking any skill, ask the user exactly two questions — no more:**
+**Before invoking any skill, ask the user three questions in sequence — no more:**
 
 1. **Visual direction** — Present 3–4 named style options, each with a one-line description. Include at least one distinctive or bold direction alongside safer choices (e.g. "Warm & editorial", "Cool & minimal", "High-contrast & typographic", "Bold & expressive"). Tell the user: "If none feel right, just say so and I'll generate another set."
-2. **Reference design** — "Do you have a website or design you'd like to reference? (URL or screenshot — skip if not)"
 
-Infer everything else (audience, tone, content hierarchy) directly from the page-story. Do not ask additional questions.
+2. **Aesthetic style** — After receiving the Q1 answer, generate 4 aesthetic style options dynamically based on the page-story content and Q1 direction. Each option must be a genuinely different CSS world — not a variation of the same mood. Format:
+
+   > **Style Name** — one-sentence description
+   > `CSS signature: [3 key CSS properties that define this aesthetic]`
+
+   Rules:
+   - Options must be radically distinct from each other (e.g., Brutalism vs. Glassmorphism — not "cool minimal" vs. "refined minimal")
+   - Include at least one unexpected direction for this subject matter
+   - If user says "none feel right," generate a new set
+
+   Example format (content must vary per page-story + Q1 — these are illustrative, not a fixed menu):
+   - **Brutalist Academic** — Raw grid, stark contrast, no decoration; reading-machine feel
+     `CSS: border: 3px solid currentColor; border-radius: 0; box-shadow: none`
+   - **Glassmorphism Light** — Frosted glass panels, layered translucency, modern tech feel
+     `CSS: backdrop-filter: blur(12px); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3)`
+   - **Museum Whitespace** — Extreme negative space, caption-driven, artifact-display feel
+     `CSS: padding: 5rem 6rem; max-width: 640px; font-size: 0.85rem`
+   - **Terminal Scholar** — Monospace throughout, dark mode, command-line aesthetic
+     `CSS: font-family: 'JetBrains Mono', monospace; background: #0d1117; color: #c9d1d9`
+
+3. **Reference design** — "Do you have a website or design you'd like to reference? (URL or screenshot — skip if not)"
+
+Infer everything else (audience, tone, content hierarchy) directly from the page-story. Do not ask additional questions beyond these three.
 
 **If the user provides a reference URL:**
 
@@ -78,6 +99,15 @@ Save output to: `docs/plans/YYYY-MM-DD-<name>-design.md`
 **Invoke the `ui-ux-pro-max` skill using the Skill tool with `--design-system`.** This step must be performed by the skill — do not write a design system manually, even if the skill's output seems mismatched to the context. Use the page-story content and design context from Step 1 as the sole inputs.
 
 Take the skill's output (palette, typography, style, effects, anti-patterns) as the foundation. Where specific recommendations conflict with the design context (e.g. a "motion-driven" style for an academic page), note the override and the reason in the design doc, then adapt those elements. The rest of the skill's output applies as-is. Append the result as a new `## Design System` section to the design doc from Step 1.
+
+**The design system must include a `### Aesthetic Implementation` section** that translates the Q2 aesthetic style choice into concrete CSS patterns. This is the bridge that makes the style choice executable — writing-plans reads it to generate specific CSS, not generic defaults.
+
+Required fields:
+- **Surface treatment** — exact CSS for cards, panels, containers (border, shadow, border-radius, background)
+- **Typography expression** — heading vs. body distinction: weight ratio, size scale, letter-spacing
+- **Decorative rules** — what decoration is present / explicitly forbidden in this aesthetic
+- **Spatial rhythm** — density disposition this aesthetic produces (compact / airy / extreme whitespace / dense)
+- **Signature CSS** — 3–5 declarations that are the unmistakable fingerprint of this aesthetic (copied from Q2 CSS signature, expanded)
 
 ## Step 3 — Implementation Plan
 
@@ -117,6 +147,7 @@ Before marking the build complete, verify:
 - [ ] Spacing follows a consistent rhythm throughout
 - [ ] Page is responsive: no horizontal scroll at 375px or 1200px
 - [ ] Rendering Conventions have been applied (e.g. icon links for `## Links`)
+- [ ] Aesthetic style from design doc is reflected in CSS (not generic clean/modern defaults)
 
 ## Step 5 — Quality Pass
 
