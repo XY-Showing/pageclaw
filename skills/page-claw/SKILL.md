@@ -1,6 +1,6 @@
 ---
 name: page-claw
-description: "Use when converting a page-story markdown file into a static HTML page. Covers the full pipeline: design context gathering, design system generation, and implementation planning."
+description: "Use when the user wants to turn a page-story markdown file (page-story-*.md) into a polished static HTML page. Trigger for: personal pages, academic homepages, portfolio pages, profile pages, any request to build a page from a structured markdown brief. Runs the full pipeline automatically: design context gathering, design system, implementation plan, build, and quality pass."
 argument-hint: "[page-story-file]"
 license: MIT
 metadata:
@@ -11,6 +11,8 @@ metadata:
 # Page Claw
 
 Convert a `page-story-*.md` file into a polished, single-file static HTML page.
+
+`<name>` in filenames below is derived from the page-story filename (e.g., `page-story-ying-xiao.md` → `ying-xiao`). If the filename has no slug, use the subject's name from the content in kebab-case.
 
 ## Pipeline
 
@@ -27,7 +29,7 @@ page-story.md
 [3. writing-plans]          → YYYY-MM-DD-<name>-impl.md
     │
     ▼
-[4. Build]                  → index.html
+[4. Build]                  → index.html (project root)
     │
     ▼
 [5. Quality pass]           → polish → audit → (quieter / critique if needed)
@@ -42,7 +44,7 @@ page-story.md
 
 Infer everything else (audience, tone, content hierarchy) directly from the page-story. Do not ask additional questions.
 
-Once you have the user's answers, **invoke the `teach-impeccable` skill using the Skill tool**. When invoking it, explicitly state in your context: the user's style choice, their reference (or that they skipped), and a note that these questions have already been answered and should not be re-asked. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
+Once you have the user's answers, write a brief summary in your response — the user's style choice, their reference (or that they skipped), and the target save path. This appears in the conversation history so teach-impeccable can read it without re-asking. Then **invoke the `teach-impeccable` skill using the Skill tool**, passing the target file path (`docs/plans/YYYY-MM-DD-<name>-design.md`) as the `config_file` argument. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
 
 Save output to: `docs/plans/YYYY-MM-DD-<name>-design.md`
 
@@ -56,7 +58,7 @@ Save output to: `docs/plans/YYYY-MM-DD-<name>-design.md`
 
 **Invoke the `ui-ux-pro-max` skill using the Skill tool with `--design-system`.** This step must be performed by the skill — do not write a design system manually, even if the skill's output seems mismatched to the context. Use the page-story content and design context from Step 1 as the sole inputs.
 
-Take the skill's output (palette, typography, style, effects, anti-patterns) as the foundation. Where specific recommendations conflict with the design context (e.g. a "motion-driven" style for an academic page), note the override and the reason in the design doc, then adapt those elements. The rest of the skill's output applies as-is. Append the result to the design doc from Step 1.
+Take the skill's output (palette, typography, style, effects, anti-patterns) as the foundation. Where specific recommendations conflict with the design context (e.g. a "motion-driven" style for an academic page), note the override and the reason in the design doc, then adapt those elements. The rest of the skill's output applies as-is. Append the result as a new `## Design System` section to the design doc from Step 1.
 
 ## Step 3 — Implementation Plan
 
@@ -99,7 +101,7 @@ Before marking the build complete, verify:
 
 ## Step 5 — Quality Pass
 
-After `index.html` is functionally complete, run in this order:
+After `index.html` is functionally complete, invoke these skills using the Skill tool in order:
 
 - `polish` — **always run.** Final pass for alignment, states, edge cases.
 - `audit` — **always run.** Accessibility, performance, anti-pattern report.
