@@ -47,20 +47,20 @@ page-story.md
 
    - **Fetch (max 2 pages)** — Use WebFetch on the provided URL. Then inspect `<nav>` links to identify site type: if it's a personal/academic page, the home page is sufficient; if it's a portfolio or company site, also fetch the single most relevant subpage (`/work`, `/about`, `/research`). Never fetch more than 2 pages.
 
-   - **Extract design signals from HTML/CSS** — focus only on visual language, not layout structure or section order:
+   - **Extract design signals from HTML/CSS** — read the full visual language of the reference:
      - Color temperature (warm/neutral/cool) — from CSS color values
      - Typography character (serif/sans/mono, weight contrast) — from `font-family`, `font-weight`
      - Spatial density (compact/airy) — from `padding`, `line-height`
      - Animation presence — from `transition`, `@keyframes` (signals static/minimal vs. motion-enhanced)
      - Hover character — from `:hover` styles
+     - Surface treatment (shadow depth, border-radius, border presence) — from `box-shadow`, `border-radius`, `border`
+     - Layout character (sidebar tendency / single-column / grid) — from `display: grid/flex`, sidebar patterns, `max-width` constraints
 
-   - **Document** — write extracted signals in the design doc under a `### Reference` sub-section (e.g., "From reference: monospace type, tight line-height, neutral palette, minimal hover transitions").
+   - **Document** — write extracted signals in the design doc under a `### Reference` sub-section (e.g., "From reference: sans-serif, extreme whitespace, no shadows, flat surfaces, static, single-column reading layout").
 
-   After analysis, **skip Q2 and go directly to Q3.** The reference signals and any directional note the user added serve as the direction anchor for Q3 aesthetic option generation.
+   After analysis, **skip Q2 and go directly to Q3.** All extracted signals serve as soft inputs that tilt the Q3 option generation space — they shape which aesthetics and layouts feel resonant, but do not mandate outcomes. Page-story governs content. The Q3 aesthetic selection governs the final layout. The reference tilts, not dictates.
 
    **If the user skips:** proceed to Q2.
-
-   The reference shapes palette and typography bias only. It does not control section order, layout structure, or anything governed by the page-story or Constraints.
 
 2. **Visual direction** — *Ask only if Q1 was skipped.* Present 3–4 named style options labeled A/B/C/D, each with a one-line description. Include at least one distinctive or bold direction alongside safer choices. Tell the user: "If none feel right, just say so and I'll generate another set."
 
