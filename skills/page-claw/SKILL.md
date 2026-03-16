@@ -37,9 +37,32 @@ page-story.md
 
 ## Step 1 — Design Context
 
-**Before invoking any skill, ask the user three questions in sequence — no more:**
+**Before invoking any skill, ask the user two or three questions — no more. The number depends on whether they have a reference design (see below).**
 
-1. **Visual direction** — Present 3–4 named style options labeled A/B/C/D, each with a one-line description. Include at least one distinctive or bold direction alongside safer choices. Tell the user: "If none feel right, just say so and I'll generate another set."
+1. **Reference design** — Ask this first, before generating any style options:
+
+   > "Do you have a website or design you'd like to reference? (URL or screenshot — skip if not. Feel free to add a directional note, e.g. 'like this but darker' or 'same vibe, more minimal'.)"
+
+   **If the user provides a reference URL:** fetch and analyze it immediately (before asking anything else):
+
+   - **Fetch (max 2 pages)** — Use WebFetch on the provided URL. Then inspect `<nav>` links to identify site type: if it's a personal/academic page, the home page is sufficient; if it's a portfolio or company site, also fetch the single most relevant subpage (`/work`, `/about`, `/research`). Never fetch more than 2 pages.
+
+   - **Extract design signals from HTML/CSS** — focus only on visual language, not layout structure or section order:
+     - Color temperature (warm/neutral/cool) — from CSS color values
+     - Typography character (serif/sans/mono, weight contrast) — from `font-family`, `font-weight`
+     - Spatial density (compact/airy) — from `padding`, `line-height`
+     - Animation presence — from `transition`, `@keyframes` (signals static/minimal vs. motion-enhanced)
+     - Hover character — from `:hover` styles
+
+   - **Document** — write extracted signals in the design doc under a `### Reference` sub-section (e.g., "From reference: monospace type, tight line-height, neutral palette, minimal hover transitions").
+
+   After analysis, **skip Q2 and go directly to Q3.** The reference signals and any directional note the user added serve as the direction anchor for Q3 aesthetic option generation.
+
+   **If the user skips:** proceed to Q2.
+
+   The reference shapes palette and typography bias only. It does not control section order, layout structure, or anything governed by the page-story or Constraints.
+
+2. **Visual direction** — *Ask only if Q1 was skipped.* Present 3–4 named style options labeled A/B/C/D, each with a one-line description. Include at least one distinctive or bold direction alongside safer choices. Tell the user: "If none feel right, just say so and I'll generate another set."
 
    Example:
    A. Warm & editorial — ...
@@ -47,7 +70,7 @@ page-story.md
    C. High-contrast & typographic — ...
    D. Bold & expressive — ...
 
-2. **Aesthetic style** — After receiving the Q1 answer, generate 4 aesthetic style options dynamically based on the page-story content and Q1 direction. Each option must be a genuinely different CSS world — not a variation of the same mood. Present options labeled A/B/C/D. Format:
+3. **Aesthetic style** — Generate 4 aesthetic style options dynamically based on the page-story content, Q2 direction (if asked), and reference signals + directional note (if provided). Each option must be a genuinely different CSS world — not a variation of the same mood. Present options labeled A/B/C/D. Format:
 
    A. **Style Name** — one-sentence description
       Layout: [layout pattern]
@@ -60,7 +83,7 @@ page-story.md
    - Each option's layout pattern must differ from at least one other option — variety in layout is part of variety in aesthetic
    - If user says "none feel right," generate a new set
 
-   Example format (content must vary per page-story + Q1 — these are illustrative, not a fixed menu):
+   Example format (content must vary per page-story + direction inputs — these are illustrative, not a fixed menu):
    A. **Brutalist Academic** — Raw grid, stark contrast, no decoration; reading-machine feel
       Layout: asymmetric two-column grid, content bleeds full width
    B. **Glassmorphism Light** — Frosted glass panels, layered translucency, modern tech feel
@@ -70,30 +93,11 @@ page-story.md
    D. **Terminal Scholar** — Monospace throughout, dark mode, command-line aesthetic
       Layout: sticky sidebar left, scrollable main right
 
-3. **Reference design** — "Do you have a website or design you'd like to reference? (URL or screenshot — skip if not)"
-
-Infer everything else (audience, tone, content hierarchy) directly from the page-story. Do not ask additional questions beyond these three.
-
-**If the user provides a reference URL:**
-
-Fetch and analyze it before invoking teach-impeccable:
-
-1. **Fetch (max 2 pages)** — Use WebFetch on the provided URL. Then inspect `<nav>` links to identify site type: if it's a personal/academic page, the home page is sufficient; if it's a portfolio or company site, also fetch the single most relevant subpage (`/work`, `/about`, `/research`). Never fetch more than 2 pages.
-
-2. **Extract design signals from HTML/CSS** — focus only on visual language, not layout structure or section order:
-   - Color temperature (warm/neutral/cool) — from CSS color values
-   - Typography character (serif/sans/mono, weight contrast) — from `font-family`, `font-weight`
-   - Spatial density (compact/airy) — from `padding`, `line-height`
-   - Animation presence — from `transition`, `@keyframes` (signals static/minimal vs. motion-enhanced)
-   - Hover character — from `:hover` styles
-
-3. **Document** — write extracted signals in the design doc under a `### Reference` sub-section (e.g., "From reference: monospace type, tight line-height, neutral palette, minimal hover transitions"). Pass these signals as additional context to teach-impeccable and ui-ux-pro-max in Step 2.
-
-The reference shapes palette and typography bias only. It does not control section order, layout structure, or anything governed by the page-story or Constraints.
+Infer everything else (audience, tone, content hierarchy) directly from the page-story. Do not ask additional questions beyond these.
 
 ---
 
-Once you have the user's answers (and have analyzed any reference URL), write a brief summary in your response — the user's style choice, reference signals extracted (or that they skipped), and the target save path. This appears in the conversation history so teach-impeccable can read it without re-asking. Then **invoke the `teach-impeccable` skill using the Skill tool**, passing the target file path (`docs/plans/YYYY-MM-DD-<name>-design.md`) as the `config_file` argument. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
+Once you have the user's answers (and have analyzed any reference URL), write a brief summary in your response — the user's aesthetic choice, reference signals extracted (or that they skipped), and the target save path. This appears in the conversation history so teach-impeccable can read it without re-asking. Then **invoke the `teach-impeccable` skill using the Skill tool**, passing the target file path (`docs/plans/YYYY-MM-DD-<name>-design.md`) as the `config_file` argument. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
 
 Save output to: `docs/plans/YYYY-MM-DD-<name>-design.md`
 
@@ -109,15 +113,15 @@ Save output to: `docs/plans/YYYY-MM-DD-<name>-design.md`
 
 Take the skill's output (palette, typography, style, effects, anti-patterns) as the foundation. Where specific recommendations conflict with the design context (e.g. a "motion-driven" style for an academic page), note the override and the reason in the design doc, then adapt those elements. The rest of the skill's output applies as-is. Append the result as a new `## Design System` section to the design doc from Step 1.
 
-**The design system must include a `### Aesthetic Implementation` section** that translates the Q2 aesthetic style choice into concrete CSS patterns. This is the bridge that makes the style choice executable — writing-plans reads it to generate specific CSS, not generic defaults.
+**The design system must include a `### Aesthetic Implementation` section** that translates the chosen aesthetic style into concrete CSS patterns. This is the bridge that makes the style choice executable — writing-plans reads it to generate specific CSS, not generic defaults.
 
 Required fields:
-- **Layout structure** — the page layout this aesthetic naturally produces: describe the HTML skeleton (e.g., sticky sidebar + scrollable main, single centered column, asymmetric grid). This comes directly from the layout descriptor in the Q2 CSS signature and drives the HTML structure in writing-plans.
+- **Layout structure** — the page layout this aesthetic naturally produces: describe the HTML skeleton (e.g., sticky sidebar + scrollable main, single centered column, asymmetric grid). This comes directly from the layout descriptor in the aesthetic CSS signature and drives the HTML structure in writing-plans.
 - **Surface treatment** — exact CSS for cards, panels, containers (border, shadow, border-radius, background)
 - **Typography expression** — heading vs. body distinction: weight ratio, size scale, letter-spacing
 - **Decorative rules** — what decoration is present / explicitly forbidden in this aesthetic
 - **Spatial rhythm** — density disposition this aesthetic produces (compact / airy / extreme whitespace / dense)
-- **Signature CSS** — 3–5 declarations that are the unmistakable fingerprint of this aesthetic (copied from Q2 CSS signature, expanded). This is the CSS signature you generated internally for the chosen Q2 option — record it here in full even though it was not shown to the user during Q2.
+- **Signature CSS** — 3–5 declarations that are the unmistakable fingerprint of this aesthetic (copied from the aesthetic CSS signature, expanded). This is the CSS signature you generated internally for the chosen aesthetic option — record it here in full even though it was not shown to the user during the aesthetic question.
 
 ## Step 3 — Implementation Plan
 
