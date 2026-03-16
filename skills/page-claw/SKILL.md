@@ -39,12 +39,20 @@ page-story.md
 
 **Before invoking any skill, ask the user three questions in sequence — no more:**
 
-1. **Visual direction** — Present 3–4 named style options, each with a one-line description. Include at least one distinctive or bold direction alongside safer choices (e.g. "Warm & editorial", "Cool & minimal", "High-contrast & typographic", "Bold & expressive"). Tell the user: "If none feel right, just say so and I'll generate another set."
+1. **Visual direction** — Present 3–4 named style options labeled A/B/C/D, each with a one-line description. Include at least one distinctive or bold direction alongside safer choices. Tell the user: "If none feel right, just say so and I'll generate another set."
 
-2. **Aesthetic style** — After receiving the Q1 answer, generate 4 aesthetic style options dynamically based on the page-story content and Q1 direction. Each option must be a genuinely different CSS world — not a variation of the same mood. Format:
+   Example:
+   A. Warm & editorial — ...
+   B. Cool & minimal — ...
+   C. High-contrast & typographic — ...
+   D. Bold & expressive — ...
 
-   > **Style Name** — one-sentence description
-   > `CSS signature: [3 key decorative CSS properties] · layout: [layout pattern]`
+2. **Aesthetic style** — After receiving the Q1 answer, generate 4 aesthetic style options dynamically based on the page-story content and Q1 direction. Each option must be a genuinely different CSS world — not a variation of the same mood. Present options labeled A/B/C/D. Format:
+
+   A. **Style Name** — one-sentence description
+      Layout: [layout pattern]
+
+   The CSS signature (3 key decorative properties) is your internal knowledge for this option — do not show it to the user. After the user selects an option, record the full CSS signature in the design doc under Aesthetic Implementation.
 
    Rules:
    - Options must be radically distinct from each other (e.g., Brutalism vs. Glassmorphism — not "cool minimal" vs. "refined minimal")
@@ -53,14 +61,14 @@ page-story.md
    - If user says "none feel right," generate a new set
 
    Example format (content must vary per page-story + Q1 — these are illustrative, not a fixed menu):
-   - **Brutalist Academic** — Raw grid, stark contrast, no decoration; reading-machine feel
-     `CSS: border: 3px solid currentColor; border-radius: 0; box-shadow: none · layout: asymmetric two-column grid, content bleeds full width`
-   - **Glassmorphism Light** — Frosted glass panels, layered translucency, modern tech feel
-     `CSS: backdrop-filter: blur(12px); background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3) · layout: stacked frosted cards, single centered column`
-   - **Museum Whitespace** — Extreme negative space, caption-driven, artifact-display feel
-     `CSS: padding: 5rem 6rem; max-width: 640px; font-size: 0.85rem · layout: narrow single column, wide margins, content as artifact`
-   - **Terminal Scholar** — Monospace throughout, dark mode, command-line aesthetic
-     `CSS: font-family: 'JetBrains Mono', monospace; background: #0d1117; color: #c9d1d9 · layout: sticky sidebar left, scrollable main right`
+   A. **Brutalist Academic** — Raw grid, stark contrast, no decoration; reading-machine feel
+      Layout: asymmetric two-column grid, content bleeds full width
+   B. **Glassmorphism Light** — Frosted glass panels, layered translucency, modern tech feel
+      Layout: stacked frosted cards, single centered column
+   C. **Museum Whitespace** — Extreme negative space, caption-driven, artifact-display feel
+      Layout: narrow single column, wide margins, content as artifact
+   D. **Terminal Scholar** — Monospace throughout, dark mode, command-line aesthetic
+      Layout: sticky sidebar left, scrollable main right
 
 3. **Reference design** — "Do you have a website or design you'd like to reference? (URL or screenshot — skip if not)"
 
@@ -109,7 +117,7 @@ Required fields:
 - **Typography expression** — heading vs. body distinction: weight ratio, size scale, letter-spacing
 - **Decorative rules** — what decoration is present / explicitly forbidden in this aesthetic
 - **Spatial rhythm** — density disposition this aesthetic produces (compact / airy / extreme whitespace / dense)
-- **Signature CSS** — 3–5 declarations that are the unmistakable fingerprint of this aesthetic (copied from Q2 CSS signature, expanded)
+- **Signature CSS** — 3–5 declarations that are the unmistakable fingerprint of this aesthetic (copied from Q2 CSS signature, expanded). This is the CSS signature you generated internally for the chosen Q2 option — record it here in full even though it was not shown to the user during Q2.
 
 ## Step 3 — Implementation Plan
 
