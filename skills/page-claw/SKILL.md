@@ -81,6 +81,7 @@ page-story.md
    - Options must be radically distinct from each other (e.g., Brutalism vs. Glassmorphism — not "cool minimal" vs. "refined minimal")
    - Include at least one unexpected direction for this subject matter
    - Each option's layout pattern must differ from at least one other option — variety in layout is part of variety in aesthetic
+   - If Q2 direction was given, options should respect its temperature bias — don't offer dark-mode choices when user said "warm." "Unexpected direction" still applies within the chosen temperature space.
    - If user says "none feel right," generate a new set
 
    Example format (content must vary per page-story + direction inputs — these are illustrative, not a fixed menu):
@@ -164,6 +165,7 @@ Before marking the build complete, verify:
 - [ ] Page is responsive: no horizontal scroll at 375px or 1200px
 - [ ] Rendering Conventions have been applied (e.g. icon links for `## Links`)
 - [ ] Aesthetic style from design doc is reflected in CSS (not generic clean/modern defaults)
+- [ ] If dual light/dark mode was requested (mentioned anywhere in user input): implement via CSS custom properties for both themes + a toggle button (sun/moon icon, top-right corner); persist preference in `localStorage`; use `prefers-color-scheme` as initial default
 
 ## Step 5 — Quality Pass
 
