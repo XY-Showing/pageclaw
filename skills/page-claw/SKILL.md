@@ -163,6 +163,8 @@ Before marking the build complete, verify:
 - [ ] Typography hierarchy is clear — at least 3 distinct size/weight levels
 - [ ] Spacing follows a consistent rhythm throughout
 - [ ] Page is responsive: no horizontal scroll at 375px or 1200px
+- [ ] Local asset paths (images, fonts) are resolved relative to the output `index.html` location, not the page-story file location
+- [ ] Layout feels visually balanced — no bounded region (sidebar, column, card) is predominantly empty unless the whitespace is intentional to the aesthetic
 - [ ] Rendering Conventions have been applied (e.g. icon links for `## Links`)
 - [ ] Aesthetic style from design doc is reflected in CSS (not generic clean/modern defaults)
 - [ ] If dual light/dark mode was requested (mentioned anywhere in user input): implement via CSS custom properties for both themes + a toggle button (sun/moon icon, top-right corner); persist preference in `localStorage`; use `prefers-color-scheme` as initial default
