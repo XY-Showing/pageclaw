@@ -41,16 +41,18 @@ Before asking any questions, verify that a `page-story-*.md` file has been provi
 
 **If a page-story is found:** proceed directly to Step 1.
 
-**If no page-story is found:** pause the pipeline and respond with:
+**If no page-story is found:**
 
-> "It looks like you don't have a page-story file yet — that's the markdown brief page-claw uses to build your page.
->
-> Here's a starter template you can copy and fill in:
-> `skills/page-claw/page-story-starter.md` (or `~/.claude/skills/page-claw/page-story-starter.md` if installed via ClawHub)
->
-> Fill in your own information, save it as `page-story-<your-name>.md`, then run `/page-claw page-story-<your-name>.md` to continue."
+1. Copy the full contents of `page-story-starter.md` (at `~/.claude/skills/page-claw/page-story-starter.md`) into a new file called `page-story.md` in the user's current working directory.
+2. Pause and respond with:
 
-Do not proceed further until the user provides a page-story.
+> "No page-story found — I've created `page-story.md` in your current directory with sample content.
+>
+> You can:
+> - Run `/page-claw page-story.md` now to preview the output with the sample data
+> - Or edit `page-story.md` first with your own information, then run `/page-claw page-story.md`"
+
+Do not proceed further until the user explicitly continues.
 
 ---
 
