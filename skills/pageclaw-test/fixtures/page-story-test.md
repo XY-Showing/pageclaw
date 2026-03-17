@@ -1,81 +1,79 @@
-# Academic Page Story of Albert Einstein
+# Academic Page Story of Lena Hartmann
 
 ##
 
+
 ## About Me
 
-![Avatar](einstein.jpg)
+![Avatar](avatar.jpg)
 
-I am a theoretical physicist at the Institute for Advanced Study, Princeton, where I have been a faculty member since 1933. I completed my PhD at the University of Zurich under Prof. [Alfred Kleiner](https://en.wikipedia.org/wiki/Alfred_Kleiner), and previously held positions at the Swiss Patent Office in Bern and the University of Berlin. My research focuses on the foundations of physics, including the theory of relativity, quantum mechanics, and unified field theory.
+I am a fourth-year PhD student at Westgate University, supervised by Prof. [Daniel Yuen](https://westgate.edu/~dyuen) and co-supervised by Prof. [Fatima Osei](https://cs.northhaven.edu/fosei). Previously, I earned my MSc from the University of Avenmark with Prof. [Riku Saarinen](https://avenmark.edu/~rsaarinen) and my BEng from Celadon Institute of Technology. My research focuses on the safety, fairness, and robustness of large language models and AI-driven decision systems.
 
-My work aims to uncover the deep mathematical structure underlying physical reality. I believe that the most incomprehensible thing about the universe is that it is comprehensible.
+I believe that reliable AI requires understanding failure modes before they reach deployment. My work combines empirical evaluation with lightweight mitigation strategies that remain practical under real-world constraints.
 
-**I am currently seeking collaborators in unified field theory and the foundations of quantum mechanics.**
+**I am currently on the job market and open to postdoctoral positions in AI safety, AI fairness, and trustworthy machine learning.**
 
 
 ## Links
 
-[Email](einstein@ias.edu)
-[Google Scholar](https://scholar.google.com/citations?user=qc6CJjYAAAAJ&hl=en)
-[GitHub](https://github.com/albert-einstein)
-[LinkedIn](https://www.linkedin.com/in/albert-einstein/)
+[Email](l.hartmann@westgate.edu)
+[Google Scholar](https://scholar.google.com/citations?user=XXXXXXXXX)
+[GitHub](https://github.com/lena-hartmann)
+[LinkedIn](https://www.linkedin.com/in/lena-hartmann-cs/)
+[Twitter / X](https://x.com/lenahartmann_ai)
 
 
 ## News
 
-+ 1949: "Autobiographical Notes" published in *Albert Einstein: Philosopher-Scientist*, the only autobiography Einstein wrote during his lifetime.
++ Mar 2026: Invited to serve on the program committee for FairML Workshop at ICML 2026.
 
-+ 1945: Retired from the Institute for Advanced Study faculty; continues as Professor Emeritus and pursues unified field theory full-time.
++ Jan 2026: Our paper "CalibratedShield: Confidence-Aware Adversarial Defense for Safety-Critical LLM Applications" is accepted by ICLR 2026.
 
-+ 1939: Co-signed the Einstein–Szilárd letter to President Roosevelt, warning of the possibility of atomic weapons and urging U.S. research.
++ Nov 2025: Presented our work on bias propagation in multi-agent pipelines at the NeurIPS 2025 Trustworthy ML Workshop, Vancouver, Canada.
 
-+ 1933: Joined the Institute for Advanced Study, Princeton, following emigration from Germany after the rise of the Nazi regime.
++ Sep 2025: Received the Westgate Doctoral Excellence Award for outstanding research contribution.
 
-+ 1929: Awarded the Planck Medal by the German Physical Society for extraordinary contributions to theoretical physics.
++ Jun 2025: Our paper "When Fairness Cascades: Bias Amplification Across Chained Language Model Calls" is accepted by ACL 2025.
 
-+ 1921: Awarded the Nobel Prize in Physics for the discovery of the law of the photoelectric effect.
++ Mar 2025: Started a research visit at the Northhaven AI Safety Lab, hosted by Prof. Fatima Osei.
 
-+ 1919: Eddington's solar eclipse observations confirm the bending of light predicted by General Relativity — international headlines follow.
++ Dec 2024: Our paper "BoundaryBench: A Diagnostic Suite for Evaluating Safety Boundary Robustness in Instruction-Tuned LLMs" is accepted by AAAI 2025.
 
-+ 1915: General Theory of Relativity submitted to the Prussian Academy of Sciences, providing a new description of gravitation as a geometric property of space and time.
-
-+ 1905: Annus Mirabilis — four landmark papers published in *Annalen der Physik*: special relativity, mass–energy equivalence, the photoelectric effect, and Brownian motion.
++ Aug 2024: Joined the Westgate Trustworthy AI Lab as a PhD student.
 
 
 ## Selected Publications
 
-+ On the Electrodynamics of Moving Bodies, Albert Einstein, Annalen der Physik, 17(10), 891–921, 1905. (Special Theory of Relativity)
++ CalibratedShield: Confidence-Aware Adversarial Defense for Safety-Critical LLM Applications, Lena Hartmann, Daniel Yuen, Fatima Osei, and Marcus Chu, The Thirteenth International Conference on Learning Representations (ICLR 2026).
 
-+ Does the Inertia of a Body Depend Upon Its Energy Content?, Albert Einstein, Annalen der Physik, 18(13), 639–641, 1905. (E = mc²)
++ When Fairness Cascades: Bias Amplification Across Chained Language Model Calls, Lena Hartmann, Priya Anand, and Daniel Yuen, Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL 2025), Core A*, CCF-A.
 
-+ The Foundation of the General Theory of Relativity, Albert Einstein, Annalen der Physik, 49(7), 769–822, 1916.
++ BoundaryBench: A Diagnostic Suite for Evaluating Safety Boundary Robustness in Instruction-Tuned LLMs, Lena Hartmann and Daniel Yuen, Proceedings of the 39th AAAI Conference on Artificial Intelligence (AAAI 2025), Core A, CCF-A.
 
-+ On the Quantum Theory of Radiation, Albert Einstein, Physikalische Zeitschrift, 18, 121–128, 1917. (Stimulated emission — theoretical basis for lasers)
++ Soft Constraints Are Not Enough: Towards Hard Guarantees in Fairness-Constrained Text Classification, Riku Saarinen, Lena Hartmann, and Tomás Varga, Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024), Core A, CCF-B.
 
-+ Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?, Albert Einstein, Boris Podolsky, and Nathan Rosen, Physical Review, 47(10), 777–780, 1935. (EPR Paradox)
++ Probing Stereotypical Reasoning in Instruction-Following Models via Counterfactual Minimal Pairs, Lena Hartmann, Yuki Tamura, and Riku Saarinen, Findings of ACL 2024.
 
 
 ## Preprints
 
-+ Unified Field Theory: A Continuation, Albert Einstein. (Unpublished manuscript, Institute for Advanced Study, Princeton.)
++ FairChain: A Framework for Auditing Fairness Propagation in Multi-Step LLM Pipelines, Lena Hartmann, Fatima Osei, Marcus Chu, and Daniel Yuen.
 
-+ On the Generalized Theory of Gravitation, Albert Einstein. (Extended working notes toward a unified description of gravitation and electromagnetism.)
++ Revisiting Red-Teaming Metrics: Why Attack Success Rate Understates Vulnerability in Deployed Systems, Lena Hartmann and Daniel Yuen.
+
++ Do Safety Fine-Tuned Models Forget What They Learned? A Longitudinal Study of Alignment Degradation, Lena Hartmann, Priya Anand, Tomás Varga, and Fatima Osei.
 
 
 ## Invited Talk
 
-+ 1950: The Meaning of Relativity (revised edition lecture), Princeton University, Princeton, USA.
++ Mar 2026: Bias Propagation in Agentic Pipelines: What Single-Model Evaluations Miss, Westgate AI Colloquium, Westgate University, UK.
 
-+ 1946: The War Is Won, But Peace Is Not, address to the Nobel Anniversary Dinner, New York City, USA.
++ Nov 2025: When the Chain Is Only as Fair as Its Weakest Link, NeurIPS 2025 Trustworthy ML Workshop, Vancouver, Canada.
 
-+ 1940: Science and Religion, conference on Science, Philosophy and Religion, New York City, USA.
++ Jul 2025: Safety Boundaries Under Distribution Shift, Summer School on Reliable Machine Learning, ETH Zürich, Switzerland.
 
-+ 1934: On the Method of Theoretical Physics, Herbert Spencer Lecture, University of Oxford, Oxford, United Kingdom.
++ Apr 2025: Practical Fairness Auditing for Production LLM Systems, Industry Research Talk, Northhaven AI Safety Lab, Northhaven, UK.
 
-+ 1933: The Problems of Space, Ether, and the Field in Physics, Rhodes Memorial Lectures, University of Oxford, Oxford, United Kingdom.
++ Jan 2025: CalibratedShield: Confidence as a Defense Signal, ICLR 2025 Oral Preview Session (virtual).
 
-+ 1930: Fundamental Concepts of Physics and Their Most Recent Changes, Nottingham University, Nottingham, United Kingdom.
-
-+ 1921: The Theory of Relativity, Nobel Lecture, Stockholm, Sweden.
-
-+ 1913: The Present State of the Problem of Gravitation, annual meeting of the Swiss Society of Natural Sciences, Frauenfeld, Switzerland.
++ Oct 2024: Evaluating Instruction-Tuned Models at Their Boundaries, Westgate NLP Seminar Series, Westgate University, UK.
