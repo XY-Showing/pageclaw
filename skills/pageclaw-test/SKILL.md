@@ -5,6 +5,7 @@ license: MIT
 metadata:
   author: pageclaw
   version: "1.0.0"
+  homepage: https://github.com/XY-Showing/pageclaw
 ---
 
 # Page Claw — End-to-End Test
