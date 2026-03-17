@@ -23,11 +23,23 @@ My work aims to uncover the deep mathematical structure underlying physical real
 
 ## News
 
++ 1949: "Autobiographical Notes" published in *Albert Einstein: Philosopher-Scientist*, the only autobiography Einstein wrote during his lifetime.
+
++ 1945: Retired from the Institute for Advanced Study faculty; continues as Professor Emeritus and pursues unified field theory full-time.
+
++ 1939: Co-signed the Einstein–Szilárd letter to President Roosevelt, warning of the possibility of atomic weapons and urging U.S. research.
+
++ 1933: Joined the Institute for Advanced Study, Princeton, following emigration from Germany after the rise of the Nazi regime.
+
++ 1929: Awarded the Planck Medal by the German Physical Society for extraordinary contributions to theoretical physics.
+
 + 1921: Awarded the Nobel Prize in Physics for the discovery of the law of the photoelectric effect.
+
++ 1919: Eddington's solar eclipse observations confirm the bending of light predicted by General Relativity — international headlines follow.
 
 + 1915: General Theory of Relativity submitted to the Prussian Academy of Sciences, providing a new description of gravitation as a geometric property of space and time.
 
-+ 1905: Annus Mirabilis — four landmark papers published in Annalen der Physik: special relativity, mass–energy equivalence, the photoelectric effect, and Brownian motion.
++ 1905: Annus Mirabilis — four landmark papers published in *Annalen der Physik*: special relativity, mass–energy equivalence, the photoelectric effect, and Brownian motion.
 
 
 ## Selected Publications
@@ -52,6 +64,18 @@ My work aims to uncover the deep mathematical structure underlying physical real
 
 ## Invited Talk
 
++ 1950: The Meaning of Relativity (revised edition lecture), Princeton University, Princeton, USA.
+
++ 1946: The War Is Won, But Peace Is Not, address to the Nobel Anniversary Dinner, New York City, USA.
+
++ 1940: Science and Religion, conference on Science, Philosophy and Religion, New York City, USA.
+
++ 1934: On the Method of Theoretical Physics, Herbert Spencer Lecture, University of Oxford, Oxford, United Kingdom.
+
 + 1933: The Problems of Space, Ether, and the Field in Physics, Rhodes Memorial Lectures, University of Oxford, Oxford, United Kingdom.
 
++ 1930: Fundamental Concepts of Physics and Their Most Recent Changes, Nottingham University, Nottingham, United Kingdom.
+
 + 1921: The Theory of Relativity, Nobel Lecture, Stockholm, Sweden.
+
++ 1913: The Present State of the Problem of Gravitation, annual meeting of the Swiss Society of Natural Sciences, Frauenfeld, Switzerland.
