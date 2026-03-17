@@ -35,6 +35,25 @@ page-story.md
 [5. Quality pass]           → polish → audit → (quieter / critique if needed)
 ```
 
+## Pre-flight — Page-Story Check
+
+Before asking any questions, verify that a `page-story-*.md` file has been provided (as an argument, in the current directory, or referenced in the user's message).
+
+**If a page-story is found:** proceed directly to Step 1.
+
+**If no page-story is found:** pause the pipeline and respond with:
+
+> "It looks like you don't have a page-story file yet — that's the markdown brief page-claw uses to build your page.
+>
+> Here's a starter template you can copy and fill in:
+> `skills/page-claw/page-story-starter.md` (or `~/.claude/skills/page-claw/page-story-starter.md` if installed via ClawHub)
+>
+> Fill in your own information, save it as `page-story-<your-name>.md`, then run `/page-claw page-story-<your-name>.md` to continue."
+
+Do not proceed further until the user provides a page-story.
+
+---
+
 ## Step 1 — Design Context
 
 **Before invoking any skill, ask the user two or three questions — no more. The number depends on whether they have a reference design (see below).**
