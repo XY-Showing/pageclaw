@@ -36,6 +36,17 @@ page-story.md
 [5. Quality pass]           → polish → audit → (quieter / critique if needed)
 ```
 
+## Skill Invocation
+
+Each numbered step in this pipeline invokes a sub-skill. How to invoke it depends on your platform:
+
+| Platform | How to invoke a sub-skill |
+|----------|--------------------------|
+| **Claude Code** | Use the `Skill` tool with the skill name |
+| **Codex / OpenCode / Cursor / other** | Read the sub-skill's `SKILL.md` file in full, then execute it as a complete mandatory step — produce all required outputs on disk before proceeding. Do NOT summarize, abbreviate, or simulate the output. |
+
+**Critical:** Reading a skill's instructions and approximating the output is not equivalent to executing it. Each step must produce its defined artifact on disk before the next step begins. If a step's artifact is missing, re-execute that step — do not skip ahead.
+
 ## Pre-flight — Page-Story Check
 
 Before asking any questions, verify that a `page-story-*.md` file has been provided (as an argument, in the current directory, or referenced in the user's message).
@@ -120,9 +131,11 @@ Infer everything else (audience, tone, content hierarchy) directly from the page
 
 ---
 
-Once you have the user's answers (and have analyzed any reference URL), write a brief summary in your response — the user's aesthetic choice, reference signals extracted (or that they skipped), and the target save path. This appears in the conversation history so teach-impeccable can read it without re-asking. Then **invoke the `teach-impeccable` skill using the Skill tool**, passing the target file path (`docs/plans/<name>-design.md`) as the `config_file` argument. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
+Once you have the user's answers (and have analyzed any reference URL), write a brief summary in your response — the user's aesthetic choice, reference signals extracted (or that they skipped), and the target save path. This appears in the conversation history so teach-impeccable can read it without re-asking. Then **invoke the `teach-impeccable` skill** (Claude Code: use the Skill tool; other platforms: read `teach-impeccable/SKILL.md` in full and execute it completely), passing the target file path (`docs/plans/<name>-design.md`) as the `config_file` argument. teach-impeccable scans the page-story and produces a `## Design Context` block (users, brand personality, aesthetic direction, design principles).
 
 Save output to: `docs/plans/<name>-design.md`
+
+**Verify before proceeding to Step 2:** `docs/plans/<name>-design.md` must exist and contain a `## Design Context` section. If missing, re-execute this step.
 
 ## Constraints
 
@@ -132,7 +145,7 @@ Save output to: `docs/plans/<name>-design.md`
 
 ## Step 2 — Design System
 
-**Invoke the `ui-ux-pro-max` skill using the Skill tool with `--design-system`.** This step must be performed by the skill — do not write a design system manually, even if the skill's output seems mismatched to the context. Use the page-story content and design context from Step 1 as the sole inputs.
+**Invoke the `ui-ux-pro-max` skill with `--design-system`** (Claude Code: use the Skill tool; other platforms: read `ui-ux-pro-max/SKILL.md` in full and execute it completely). This step must be performed by the skill — do not write a design system manually, even if the skill's output seems mismatched to the context. Use the page-story content and design context from Step 1 as the sole inputs.
 
 Take the skill's output (palette, typography, style, effects, anti-patterns) as the foundation. Where specific recommendations conflict with the design context (e.g. a "motion-driven" style for an academic page), note the override and the reason in the design doc, then adapt those elements. The rest of the skill's output applies as-is. Append the result as a new `## Design System` section to the design doc from Step 1.
 
@@ -146,9 +159,13 @@ Required fields:
 - **Spatial rhythm** — density disposition this aesthetic produces (compact / airy / extreme whitespace / dense)
 - **Signature CSS** — 3–5 declarations that are the unmistakable fingerprint of this aesthetic (copied from the aesthetic CSS signature, expanded). This is the CSS signature you generated internally for the chosen aesthetic option — record it here in full even though it was not shown to the user during the aesthetic question.
 
+**Verify before proceeding to Step 3:** `docs/plans/<name>-design.md` must contain both `## Design Context` and `## Design System` sections, including `### Aesthetic Implementation`. If either section is missing, re-execute this step.
+
 ## Step 3 — Implementation Plan
 
-**Invoke the `writing-plans` skill using the Skill tool.** Do not write the plan manually. Use the design doc as spec. Output: a task-by-task implementation plan saved to `docs/plans/<name>-impl.md`.
+**Invoke the `writing-plans` skill** (Claude Code: use the Skill tool; other platforms: read `writing-plans/SKILL.md` in full and execute it completely). Do not write the plan manually. Use the design doc as spec. Output: a task-by-task implementation plan saved to `docs/plans/<name>-impl.md`.
+
+**Verify before proceeding to Step 4:** `docs/plans/<name>-impl.md` must exist and contain a task-by-task plan. If missing, re-execute this step.
 
 ## Rendering Conventions
 
@@ -193,7 +210,7 @@ Before marking the build complete, verify:
 
 ## Step 5 — Quality Pass
 
-After `index.html` is functionally complete, invoke these skills using the Skill tool in order:
+After `index.html` is functionally complete, invoke these skills in order (Claude Code: use the Skill tool; other platforms: read each skill's `SKILL.md` in full and execute it completely):
 
 - `polish` — **always run.** Final pass for alignment, states, edge cases.
 - `audit` — **always run.** Accessibility, performance, anti-pattern report.
