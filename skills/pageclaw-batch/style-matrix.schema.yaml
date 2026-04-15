@@ -13,48 +13,29 @@ metadata:
 
 styles:
   - id: string
-    # Unique identifier. Must match: ^\d{2,3}-[a-z]+-[a-z]+$
-    # Examples: "01-sidebar-brutalist", "02-centered-minimal"
-    # The id doubles as the output filename stem:
-    #   output/html/01-sidebar-brutalist.html
+    # Unique identifier used as output filename stem.
+    # Examples: "01-sidebar-brutalist", "42-col-editorial-01"
+    # Output: output/html/42-col-editorial-01.html
 
-    layout: enum
-    # HTML structure type. Valid values:
-    #   - sticky-sidebar-left
-    #   - sticky-sidebar-right
-    #   - single-centered-column
-    #   - asymmetric-grid
-    #   - top-nav-single-column
-    #   - split-hero
-    #   - card-grid
+    intent: string
+    # Design intent in 2-5 sentences. Describes the aesthetic
+    # character, key design moves, and visual rhythm of the
+    # template. Should name concrete design actions (e.g.
+    # "drop caps", "pull quotes", "frosted glass panels")
+    # that give ui-ux-pro-max enough signal to generate a
+    # full design system. Do NOT specify exact colors, fonts,
+    # or CSS values — those are derived by the pipeline.
+    #
+    # Good: "Mixed serif/sans pairing with strong typographic
+    #        hierarchy. Drop caps, pull quotes, baseline grid."
+    # Bad:  "Use Playfair Display 800, Lora 400, #fdf8f3 bg"
 
-    aesthetic: string
-    # Human-readable design style name.
-    # Examples: "Brutalist Academic", "Museum Whitespace",
-    #           "Glassmorphism Light", "Terminal Scholar",
-    #           "Editorial Serif"
-
-    colors:
-      primary: string       # Hex color, e.g. "#1a1a1a"
-      secondary: string     # Hex color
-      background: string    # Hex color (light mode page background)
-      surface: string       # Hex color (card/panel background)
-      accent: string        # Hex color (interactive highlights)
-      text: string          # Hex color (body text)
-      # Dark mode is derived automatically from these light-mode values.
-
-    typography:
-      heading_font: string      # CSS font-family value, e.g. "Space Grotesk, sans-serif"
-      body_font: string         # CSS font-family value
-      heading_weight: integer   # CSS font-weight, e.g. 800
-      body_weight: integer      # CSS font-weight, e.g. 400
-
-    decorative_rules:
-      - string
-      # Array of strings describing what decoration is present or
-      # explicitly forbidden. Each entry is a short directive.
-      # Examples:
-      #   - "No border-radius anywhere"
-      #   - "1px solid borders on all containers"
-      #   - "Frosted glass blur on card surfaces"
-      #   - "No drop shadows"
+    layout: string
+    # One-line layout skeleton description.
+    # Examples:
+    #   - "Single scrolling column, one section per content type"
+    #   - "Sticky sidebar left, scrollable main right"
+    #   - "Card grid, 2-3 columns responsive"
+    #   - "Split hero left, content right"
+    #   - "Top nav, single centered column"
+    #   - "Asymmetric two-column grid"

@@ -1,11 +1,11 @@
 ---
 name: pageclaw-batch
-description: "Batch generate static HTML page templates by combining a pre-defined style matrix (layout, aesthetic, colors, typography) with page-story markdown files. Skips interactive design questions. Input: style-matrix.yaml + page-story files. Output: organized HTML + design docs."
+description: "Batch generate static HTML page templates by combining a style matrix (design intents + layouts) with page-story markdown files. Skips interactive design questions — each style entry provides a design intent description that drives the full pipeline. Input: style-matrix.yaml + page-story files. Output: organized HTML + design docs."
 argument-hint: "[style-matrix-path] [page-stories-glob]"
 license: MIT
 metadata:
   author: pageclaw
-  version: "1.0.0"
+  version: "2.0.0"
   homepage: https://github.com/XY-Showing/pageclaw
 ---
 
@@ -13,7 +13,7 @@ metadata:
 
 Batch-generate polished static HTML pages from a style matrix and page-story files, bypassing all interactive design questions.
 
-`<id>` in filenames below is the style entry's `id` field (e.g., `01-sidebar-brutalist`).
+`<id>` in filenames below is the style entry's `id` field (e.g., `42-col-editorial-01`).
 
 ## Pipeline
 
@@ -56,7 +56,7 @@ Reading a skill's instructions and approximating the output is not equivalent to
 ## Pre-flight
 
 1. Locate `style-matrix.yaml` (from argument, current directory, or user message). If not found, stop and ask the user.
-2. Validate the YAML against the schema (`style-matrix.schema.yaml`). Every entry must have: `id`, `layout`, `aesthetic`, `colors` (all six fields), `typography` (all four fields), `decorative_rules`.
+2. Validate the YAML. Every entry must have: `id`, `intent` (non-empty string), `layout` (non-empty string).
 3. Locate page-story files (from argument glob, or `page-story-*.md` in current directory). At least one must exist.
 4. Create output directories: `output/html/`, `output/docs/`.
 
@@ -72,9 +72,9 @@ Report to user: number of styles, number of page-stories, total combinations to 
 4. Display a summary table to the user:
 
 ```
-Styles: 6 | Page-stories: 1 | Combinations: 6
+Styles: 5 | Page-stories: 1 | Combinations: 5
   01-sidebar-brutalist       x page-story-ying-xiao.md
-  02-centered-minimal        x page-story-ying-xiao.md
+  42-col-editorial-01        x page-story-ying-xiao.md
   ...
 ```
 
@@ -84,16 +84,16 @@ Proceed only after user confirms (or immediately if running in autonomous mode).
 
 ## Phase 2 -- For Each Combination
 
-For each (style entry, page-story) pair, execute Steps A through E sequentially. Derive `<id>` from the style entry's `id` field. Derive `<name>` from the page-story filename (e.g., `page-story-ying-xiao.md` -> `ying-xiao`).
+For each (style entry, page-story) pair, execute Steps A through E sequentially. Derive `<id>` from the style entry's `id` field.
 
 ### Step A -- Create Design Context
 
-This step replaces page-claw's interactive Step 1. Instead of asking questions and invoking teach-impeccable, synthesize the design context directly from the style matrix entry.
+This step replaces page-claw's interactive Step 1. Instead of asking questions and invoking teach-impeccable, synthesize the design context from the style entry's `intent` and `layout` fields combined with the page-story content.
 
 Write `output/docs/<id>-design.md` with the following structure:
 
 ```markdown
-# <aesthetic> -- <name>
+# <id>
 
 ## Design Context
 
@@ -101,54 +101,28 @@ Write `output/docs/<id>-design.md` with the following structure:
 Infer target audience from the page-story content (academic peers, recruiters, general visitors, etc.). State the primary and secondary audiences.
 
 ### Brand Personality
-Derive from the aesthetic name and the page-story tone. State 3-5 adjectives.
+Derive from the intent description and the page-story tone. State 3-5 adjectives.
 
 ### Aesthetic Direction
-State the chosen aesthetic (`<aesthetic>` from matrix), its layout pattern (`<layout>`), and the overall mood it produces.
+Restate the intent from the style matrix. Describe the overall mood and visual character it produces. Include the layout description.
 
 ### Design Principles
-3-4 principles that govern this aesthetic applied to this content. Derive from the intersection of the aesthetic style and the page-story subject matter.
-
-### Reference
-Color specification (light mode):
-- Primary: <colors.primary>
-- Secondary: <colors.secondary>
-- Background: <colors.background>
-- Surface: <colors.surface>
-- Accent: <colors.accent>
-- Text: <colors.text>
-
-Typography:
-- Headings: <typography.heading_font>, weight <typography.heading_weight>
-- Body: <typography.body_font>, weight <typography.body_weight>
-
-Decorative rules:
-- <each entry from decorative_rules, one per line>
-
-### Aesthetic Implementation
-
-**Layout structure** -- Describe the HTML skeleton this layout produces (e.g., for `sticky-sidebar-left`: a fixed-width sidebar with `position: sticky` on the left, scrollable main content area on the right; for `single-centered-column`: a single `max-width` container centered with `margin: auto`).
-
-**Surface treatment** -- Derive from colors and decorative_rules: what borders, shadows, backgrounds, and border-radii apply to cards, panels, and containers.
-
-**Typography expression** -- Describe the heading vs. body distinction: weight contrast (<heading_weight> vs. <body_weight>), font pairing (<heading_font> vs. <body_font>), and size scale.
-
-**Decorative rules** -- Restate the decorative_rules array as concrete CSS directives: what is present, what is explicitly forbidden.
-
-**Spatial rhythm** -- Infer from the aesthetic name and layout: compact, airy, extreme whitespace, or dense.
-
-**Signature CSS** -- 3-5 CSS declarations that are the unmistakable fingerprint of this aesthetic. Derive from the combination of layout, colors, typography, and decorative_rules.
+3-4 principles that govern this aesthetic applied to this content. Derive from the intersection of the intent and the page-story subject matter.
 ```
 
-All values come from the style matrix entry and the page-story. Do not ask the user any questions. Do not invoke teach-impeccable.
+The `intent` field is the primary creative input. It describes design actions and character (e.g., "drop caps, pull quotes, mixed serif/sans pairing") without prescribing specific colors, fonts, or CSS values. Pass this intent faithfully to Step B — do not interpret it into concrete design decisions yourself.
+
+Do not ask the user any questions. Do not invoke teach-impeccable.
 
 **Verify:** `output/docs/<id>-design.md` exists and contains `## Design Context` with all subsections above.
 
 ### Step B -- Design System
 
-Invoke the `ui-ux-pro-max` skill with `--design-system`. Use the page-story content and the design context from Step A as inputs.
+Invoke the `ui-ux-pro-max` skill with `--design-system`. Use the page-story content and the design context from Step A (including the full intent description) as inputs.
 
-Append the skill's output as a `## Design System` section to `output/docs/<id>-design.md`. Where the skill's recommendations conflict with the matrix-specified colors, typography, or decorative rules, the matrix values take precedence -- note the override and reason in the doc.
+ui-ux-pro-max is responsible for all concrete design decisions: color palette, typography pairing, spacing scale, surface treatment, decorative rules, and dark mode mapping. The intent description provides creative direction; ui-ux-pro-max translates it into a complete, executable design system.
+
+Append the skill's output as a `## Design System` section to `output/docs/<id>-design.md`.
 
 **Verify:** `output/docs/<id>-design.md` contains both `## Design Context` and `## Design System`.
 
@@ -164,16 +138,14 @@ Output: `output/docs/<id>-impl.md` containing a task-by-task build plan.
 
 Execute the implementation plan. The plan drives all structural and visual decisions.
 
-Before marking the build complete, verify:
+Before marking the build complete, verify the Technical Contract (see Constraints) and:
 
-- [ ] All colors use CSS custom properties with both light and dark theme values
-- [ ] Light/dark mode toggle button (sun/moon icon, top-right corner) with `localStorage` persistence and `prefers-color-scheme` detection as initial default
 - [ ] All interactive elements have `:hover` and `:focus-visible` states
 - [ ] Typography hierarchy: at least 3 distinct size/weight levels
 - [ ] Consistent spacing rhythm throughout
 - [ ] Responsive: no horizontal scroll at 375px or 1200px
 - [ ] Rendering Conventions applied (see below)
-- [ ] Aesthetic style from design doc reflected in CSS, not generic defaults
+- [ ] Design intent from the style matrix is reflected in the final output
 - [ ] Layout matches the `layout` field from the style matrix
 
 Output: `output/html/<id>.html`
@@ -193,11 +165,10 @@ Invoke these skills in order:
 
 After all combinations are built, generate `output/index.html` -- a styled HTML page that:
 
-1. Lists every generated template with its aesthetic name, layout type, and a link to the HTML file.
+1. Lists every generated template with its id, intent summary, and a link to the HTML file.
 2. Groups entries by page-story if multiple page-stories were used.
-3. Shows the color palette for each entry as small swatches.
-4. Includes its own light/dark mode toggle.
-5. Uses clean, minimal styling (not one of the matrix aesthetics).
+3. Includes its own light/dark mode toggle.
+4. Uses clean, minimal styling (not one of the matrix aesthetics).
 
 ---
 
@@ -214,9 +185,18 @@ Refer to `page-claw/SKILL.md` "Rendering Conventions" section for the full platf
 
 ## Constraints
 
-- **The page-story is the authoritative source.** Render it faithfully -- do not add, remove, reorder, or reinterpret its content. The design system serves the story, not the other way around.
-- **Design decisions derive from the style matrix and page-story only.** Do not reference existing project files, other HTML pages, or prior designs unless the user explicitly requests it.
-- **Matrix values are authoritative for colors, typography, and decorative rules.** When sub-skills (ui-ux-pro-max) produce conflicting values, override with the matrix and document the reason.
+**The page-story is the authoritative source.** Render it faithfully -- do not add, remove, reorder, or reinterpret its content. The design system serves the story, not the other way around.
+
+**Design decisions derive from the intent, layout, and page-story only.** Do not reference existing project files, other HTML pages, or prior designs unless the user explicitly requests it.
+
+**ui-ux-pro-max owns all concrete design decisions.** Colors, fonts, spacing, surface treatment, and decorative details are determined by ui-ux-pro-max based on the intent. Do not override or second-guess its output.
+
+**Technical Contract (applies to ALL templates):**
+- All colors defined via CSS custom properties on `:root` (light) with a full `[data-theme="dark"]` override block
+- Required variables in both blocks: `--bg`, `--bg-subtle`, `--fg`, `--fg-muted`, `--border`, `--accent`, `--accent-fg`
+- Zero raw hex/rgb values outside `:root` and `[data-theme="dark"]` blocks
+- Component CSS references colors ONLY via `var(--*)`
+- Light/dark mode toggle button (sun/moon icon, top-right corner) with `localStorage` persistence and `prefers-color-scheme` as initial default
 
 ---
 

@@ -35,7 +35,7 @@ After the batch pipeline completes, run these checks against `test-output/batch/
 
 - Pre-flight: style matrix parsed, page-story found, output dirs created.
 - Parse Inputs: 3 styles detected, 1 page-story, 3 combinations listed.
-- Each style (`01-sidebar-brutalist`, `02-centered-minimal`, `03-topnav-editorial`): all steps A-E completed without error.
+- Each style (`01-sidebar-brutalist`, `02-col-whitespace`, `03-topnav-editorial`): all steps A-E completed without error.
 - Master Index: `test-output/batch/index.html` generated.
 
 ### Artifact checks (repeat for each style `<id>`)
@@ -43,11 +43,12 @@ After the batch pipeline completes, run these checks against `test-output/batch/
 - `test-output/batch/docs/<id>-design.md` exists, contains `## Design Context` and `## Design System`.
 - `test-output/batch/docs/<id>-impl.md` exists, contains a task-by-task plan.
 - `test-output/batch/html/<id>.html` exists, is valid HTML (has `<!DOCTYPE html>` or `<html`).
-- HTML uses CSS custom properties (`--primary`, `--background`, etc.).
-- HTML has a light/dark mode toggle.
+- HTML uses CSS custom properties (`--bg`, `--fg`, `--accent`, etc. per Technical Contract).
+- HTML has a light/dark mode toggle with `[data-theme="dark"]` override block.
 - HTML is responsive (no fixed widths exceeding `100vw`).
-- CSS color values match the style matrix colors for that entry.
+- Zero raw hex/rgb values outside `:root` and `[data-theme="dark"]` blocks.
 - Layout structure matches the style matrix `layout` field.
+- Design intent from the style matrix is reflected in the visual output.
 
 ### Master index checks
 
@@ -66,7 +67,7 @@ Print the following report after validation:
 - [ ] Pre-flight: passed / FAILED
 - [ ] Parse Inputs: passed / FAILED
 - [ ] Style 01-sidebar-brutalist: completed / FAILED
-- [ ] Style 02-centered-minimal: completed / FAILED
+- [ ] Style 02-col-whitespace: completed / FAILED
 - [ ] Style 03-topnav-editorial: completed / FAILED
 - [ ] Master Index: generated / FAILED
 
@@ -75,11 +76,12 @@ For each style <id>:
 - [ ] output/docs/<id>-design.md exists and contains ## Design Context + ## Design System
 - [ ] output/docs/<id>-impl.md exists and contains task-by-task plan
 - [ ] output/html/<id>.html exists and is valid HTML
-- [ ] HTML has CSS custom properties (--primary, --background, etc.)
-- [ ] HTML has light/dark mode toggle
+- [ ] HTML has CSS custom properties (--bg, --fg, --accent, etc.)
+- [ ] HTML has light/dark mode toggle with [data-theme="dark"] block
 - [ ] HTML is responsive (no fixed widths > 100vw)
-- [ ] Colors in CSS match style-matrix values
+- [ ] Zero raw hex/rgb outside :root and [data-theme="dark"]
 - [ ] Layout matches style-matrix layout field
+- [ ] Design intent reflected in visual output
 
 ### Master Index Check
 - [ ] output/index.html exists

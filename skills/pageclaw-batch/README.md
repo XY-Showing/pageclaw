@@ -1,6 +1,6 @@
 # pageclaw-batch
 
-Batch-generate static HTML page templates from a style matrix and page-story markdown files. Instead of the interactive 3-question design phase that `page-claw` uses, `pageclaw-batch` reads all design decisions (layout, aesthetic, colors, typography, decorative rules) from a `style-matrix.yaml` file and produces one HTML template per style entry.
+Batch-generate static HTML page templates from a style matrix and page-story markdown files. Instead of the interactive 3-question design phase that `page-claw` uses, `pageclaw-batch` reads design intents and layout descriptions from a `style-matrix.yaml` file and lets ui-ux-pro-max make all concrete design decisions (colors, typography, spacing, decoration).
 
 ## Usage
 
@@ -13,9 +13,13 @@ Batch-generate static HTML page templates from a style matrix and page-story mar
 
 ## Input format
 
-The style matrix is a YAML file defining one or more template variants. See `style-matrix.schema.yaml` for the full field reference. A working example with five styles is at `examples/style-matrix.sample.yaml`.
+Each style entry requires three fields:
 
-Each style entry requires: `id`, `layout`, `aesthetic`, `colors`, `typography`, and `decorative_rules`.
+- `id` -- unique identifier, used as output filename (e.g., `42-col-editorial-01`)
+- `intent` -- 2-5 sentences describing the aesthetic character and key design moves
+- `layout` -- one-line layout skeleton description
+
+See `style-matrix.schema.yaml` for the full field reference. A working example is at `examples/style-matrix.sample.yaml`.
 
 ## Output structure
 
@@ -26,16 +30,5 @@ output/
   docs/
     <id>-design.md             # Design context + system doc
     <id>-impl.md               # Implementation plan
+  index.html                   # Master index linking all templates
 ```
-
-## File naming convention
-
-Output filenames are derived from the style `id` field, which must match the pattern `^\d{2,3}-[a-z]+-[a-z]+$`:
-
-```
-01-sidebar-brutalist.html
-02-centered-minimal.html
-03-topnav-editorial.html
-```
-
-The numeric prefix controls ordering. The two slug segments encode the layout shorthand and aesthetic shorthand (e.g., `sidebar-brutalist` = sticky sidebar left + Brutalist Academic).
