@@ -206,7 +206,7 @@ Before marking the build complete, verify:
 - [ ] Layout feels visually balanced — no bounded region (sidebar, column, card) is predominantly empty unless the whitespace is intentional to the aesthetic
 - [ ] Rendering Conventions have been applied (e.g. icon links for `## Links`)
 - [ ] Aesthetic style from design doc is reflected in CSS (not generic clean/modern defaults)
-- [ ] If dual light/dark mode was requested (mentioned anywhere in user input): implement via CSS custom properties for both themes + a toggle button (sun/moon icon, top-right corner); persist preference in `localStorage`; use `prefers-color-scheme` as initial default
+- [ ] Dual light/dark mode: all colors must use CSS custom properties; provide both themes with a toggle button (sun/moon icon, top-right corner); persist preference in `localStorage`; use `prefers-color-scheme` as initial default
 
 ## Step 5 — Quality Pass
 
