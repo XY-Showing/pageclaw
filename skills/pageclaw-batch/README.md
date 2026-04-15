@@ -19,7 +19,19 @@ Each style entry requires three fields:
 - `intent` -- 2-5 sentences describing the aesthetic character and key design moves
 - `layout` -- one-line layout skeleton description
 
-See `style-matrix.schema.yaml` for the full field reference. A working example is at `examples/style-matrix.sample.yaml`.
+Example entry:
+
+```yaml
+- id: "42-col-editorial-01"
+  intent: >
+    Mixed serif/sans pairing with strong typographic hierarchy. Drop caps,
+    pull quotes, figure captions with typographic rules. Baseline grid
+    alignment. Signature color (need not be neutral). Magazine-heritage
+    rhythm — opener treatment differs from body sections.
+  layout: "Single scrolling column, one section per content type."
+```
+
+The `intent` describes the aesthetic character and key design moves — concrete enough for ui-ux-pro-max to act on, but without prescribing specific colors, fonts, or CSS values. A complete matrix with multiple entries is at `examples/style-matrix.sample.yaml`.
 
 ## Output structure
 
