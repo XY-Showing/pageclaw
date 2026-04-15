@@ -1,0 +1,60 @@
+# style-matrix.schema.yaml
+# Reference schema for pageclaw-batch style matrix files.
+# This is documentation, not a machine-enforced JSON Schema.
+# Each entry in `styles[]` defines one template variant that
+# pageclaw-batch will generate from a page-story file.
+
+version: "1.0"
+
+metadata:
+  author: string        # Who created this matrix
+  created: string       # ISO 8601 date (e.g. "2026-04-16")
+  description: string   # One-line purpose of this matrix
+
+styles:
+  - id: string
+    # Unique identifier. Must match: ^\d{2,3}-[a-z]+-[a-z]+$
+    # Examples: "01-sidebar-brutalist", "02-centered-minimal"
+    # The id doubles as the output filename stem:
+    #   output/html/01-sidebar-brutalist.html
+
+    layout: enum
+    # HTML structure type. Valid values:
+    #   - sticky-sidebar-left
+    #   - sticky-sidebar-right
+    #   - single-centered-column
+    #   - asymmetric-grid
+    #   - top-nav-single-column
+    #   - split-hero
+    #   - card-grid
+
+    aesthetic: string
+    # Human-readable design style name.
+    # Examples: "Brutalist Academic", "Museum Whitespace",
+    #           "Glassmorphism Light", "Terminal Scholar",
+    #           "Editorial Serif"
+
+    colors:
+      primary: string       # Hex color, e.g. "#1a1a1a"
+      secondary: string     # Hex color
+      background: string    # Hex color (light mode page background)
+      surface: string       # Hex color (card/panel background)
+      accent: string        # Hex color (interactive highlights)
+      text: string          # Hex color (body text)
+      # Dark mode is derived automatically from these light-mode values.
+
+    typography:
+      heading_font: string      # CSS font-family value, e.g. "Space Grotesk, sans-serif"
+      body_font: string         # CSS font-family value
+      heading_weight: integer   # CSS font-weight, e.g. 800
+      body_weight: integer      # CSS font-weight, e.g. 400
+
+    decorative_rules:
+      - string
+      # Array of strings describing what decoration is present or
+      # explicitly forbidden. Each entry is a short directive.
+      # Examples:
+      #   - "No border-radius anywhere"
+      #   - "1px solid borders on all containers"
+      #   - "Frosted glass blur on card surfaces"
+      #   - "No drop shadows"

@@ -1,0 +1,119 @@
+version: "1.0"
+
+metadata:
+  author: pageclaw
+  created: "2026-04-16"
+  description: Five distinct layout-aesthetic combinations for batch page generation
+
+styles:
+  - id: "01-sidebar-brutalist"
+    layout: sticky-sidebar-left
+    aesthetic: Brutalist Academic
+    colors:
+      primary: "#000000"
+      secondary: "#ffffff"
+      background: "#f5f5f0"
+      surface: "#ffffff"
+      accent: "#ff3300"
+      text: "#1a1a1a"
+    typography:
+      heading_font: "Space Mono, monospace"
+      body_font: "IBM Plex Sans, sans-serif"
+      heading_weight: 700
+      body_weight: 400
+    decorative_rules:
+      - "No border-radius anywhere"
+      - "1px solid black borders on all containers"
+      - "No drop shadows"
+      - "No gradients"
+      - "Uppercase headings with tight letter-spacing"
+
+  - id: "02-centered-minimal"
+    layout: single-centered-column
+    aesthetic: Museum Whitespace
+    colors:
+      primary: "#2c2c2c"
+      secondary: "#8a8a8a"
+      background: "#fafafa"
+      surface: "#ffffff"
+      accent: "#0055ff"
+      text: "#333333"
+    typography:
+      heading_font: "Cormorant Garamond, serif"
+      body_font: "Source Sans 3, sans-serif"
+      heading_weight: 600
+      body_weight: 400
+    decorative_rules:
+      - "No borders on containers"
+      - "No shadows heavier than 0 1px 2px rgba(0,0,0,0.06)"
+      - "Extreme whitespace between sections (min 6rem)"
+      - "No background colors on cards — content floats on page background"
+      - "Thin hairline dividers only between major sections"
+
+  - id: "03-topnav-editorial"
+    layout: top-nav-single-column
+    aesthetic: Editorial Serif
+    colors:
+      primary: "#1b1b1b"
+      secondary: "#6b4f3a"
+      background: "#fdf8f3"
+      surface: "#fff9f2"
+      accent: "#c0392b"
+      text: "#2d2d2d"
+    typography:
+      heading_font: "Playfair Display, serif"
+      body_font: "Lora, serif"
+      heading_weight: 800
+      body_weight: 400
+    decorative_rules:
+      - "Drop caps on first paragraph of each section"
+      - "Decorative thin rules (1px) above section headings"
+      - "No border-radius larger than 2px"
+      - "No box shadows"
+      - "Pull quotes styled with large italic serif and left border"
+
+  - id: "04-grid-glassmorphism"
+    layout: card-grid
+    aesthetic: Glassmorphism Light
+    colors:
+      primary: "#1e293b"
+      secondary: "#64748b"
+      background: "#e8edf5"
+      surface: "rgba(255, 255, 255, 0.45)"
+      accent: "#6366f1"
+      text: "#1e293b"
+    typography:
+      heading_font: "Inter, sans-serif"
+      body_font: "Inter, sans-serif"
+      heading_weight: 700
+      body_weight: 400
+    decorative_rules:
+      - "backdrop-filter: blur(16px) on all card surfaces"
+      - "1px solid rgba(255,255,255,0.3) border on cards"
+      - "border-radius: 16px on cards"
+      - "Subtle box-shadow: 0 8px 32px rgba(0,0,0,0.08)"
+      - "Gradient mesh background on the page body"
+      - "No hard borders or outlines"
+
+  - id: "05-split-terminal"
+    layout: split-hero
+    aesthetic: Terminal Scholar
+    colors:
+      primary: "#00ff88"
+      secondary: "#88ccaa"
+      background: "#0a0e14"
+      surface: "#131922"
+      accent: "#ffcc00"
+      text: "#c8d6e5"
+    typography:
+      heading_font: "JetBrains Mono, monospace"
+      body_font: "JetBrains Mono, monospace"
+      heading_weight: 700
+      body_weight: 400
+    decorative_rules:
+      - "1px solid rgba(0,255,136,0.2) borders on panels"
+      - "No border-radius larger than 4px"
+      - "No drop shadows — use border glow via box-shadow with accent color"
+      - "Blinking cursor animation on hero heading"
+      - "Code-block styling for publication entries"
+      - "Prefix section headings with '>' character"
