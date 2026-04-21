@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lena Hartmann — PhD Researcher</title>
+  <meta name="description" content="Lena Hartmann — PhD researcher at Westgate University working on AI safety, AI fairness, and LLM robustness. Seeking postdoctoral positions in trustworthy machine learning.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --surface: #f4f0e8;
+      --text: #2a2118;
+      --text-muted: #6b5a47;
+      --accent: #b5541a;
+      --accent-hover: #8f3f10;
+      --rule: #d4c9b8;
+      --border: #c8bfb0;
+      --max-width: 720px;
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    /* Global links */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 0;
+    }
+
+    /* Section divider */
+    hr.section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 48px 0;
+    }
+
+    /* Section heading */
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      margin-bottom: 32px;
+    }
+    .header-identity {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 0;
+      flex-shrink: 0;
+    }
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      padding-top: 4px;
+    }
+    .name {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 2.4rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .title {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ── Bio ── */
+    .bio {
+      margin-bottom: 0;
+    }
+    .bio p + p {
+      margin-top: 16px;
+    }
+    .job-seeking {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    /* ── Icon Links ── */
+    .icon-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .icon-link {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 150ms ease;
+      padding: 6px 0;
+      min-height: 44px;
+    }
+    .icon-link:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .icon-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .icon-link svg {
+      flex-shrink: 0;
+      transition: color 150ms ease;
+    }
+    .icon-link:hover svg {
+      color: var(--accent);
+    }
+    .icon-link .simple-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      opacity: 0.55;
+      transition: opacity 150ms ease, filter 150ms ease;
+      filter: invert(33%) sepia(18%) saturate(400%) hue-rotate(15deg) brightness(55%);
+    }
+    .icon-link:hover .simple-icon {
+      opacity: 1;
+      filter: invert(32%) sepia(65%) saturate(600%) hue-rotate(5deg) brightness(65%);
+    }
+
+    /* ── News ── */
+    .news-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .news-list li {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .news-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .news-text {
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* ── Publications ── */
+    .pub-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .pub-item {
+      border-left: 2px solid var(--rule);
+      padding-left: 16px;
+      transition: border-color 150ms ease;
+    }
+    .pub-item:hover {
+      border-left-color: var(--accent);
+    }
+    .pub-title {
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 4px;
+    }
+    .pub-authors {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .pub-meta {
+      display: flex;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .pub-venue {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .pub-rank {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Preprints ── */
+    .preprint-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .pub-item.preprint {
+      border-left-color: var(--border);
+    }
+    .pub-item.preprint:hover {
+      border-left-color: var(--rule);
+    }
+
+    /* ── Invited Talks ── */
+    .talks-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .talk-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .talk-year {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .talk-title {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .talk-location {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding-bottom: 16px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      main { padding: 40px 16px; }
+      .name { font-size: 1.8rem; }
+      .news-list li { grid-template-columns: 1fr; gap: 4px; }
+      .talk-item { grid-template-columns: 40px 1fr; }
+      .icon-links { gap: 14px; }
+      /* Raise minimum text sizes on mobile */
+      .section-label { font-size: 0.75rem; }
+      .pub-rank { font-size: 0.75rem; }
+      .preprint-label { font-size: 0.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-identity">
+        <img src="avatar-girl.png" alt="Portrait of Lena Hartmann" class="avatar" width="80" height="80">
+        <div class="header-text">
+          <h1 class="name">Lena Hartmann</h1>
+          <p class="title">PhD Researcher · Westgate University</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Bio -->
+    <section class="bio" aria-label="About">
+      <p>I am a fourth-year PhD student at Westgate University, supervised by Prof. <a href="https://westgate.edu/~dyuen" target="_blank" rel="noopener">Daniel Yuen</a>, and co-supervised by Prof. <a href="https://cs.northhaven.edu/fosei" target="_blank" rel="noopener">Fatima Osei</a>. Previously, I earned my MSc from the University of Avenmark with Prof. <a href="https://avenmark.edu/~rsaarinen" target="_blank" rel="noopener">Riku Saarinen</a> and my BEng from Celadon Institute of Technology. My research focuses on the safety, fairness, and robustness of large language models and AI-driven decision systems.</p>
+      <p class="job-seeking"><strong>I am currently on the job market and open to postdoctoral positions</strong> in AI safety, AI fairness, and trustworthy machine learning.</p>
+    </section>
+
+    <!-- Links -->
+    <hr class="section-rule">
+    <section aria-labelledby="links-heading">
+      <h2 class="section-label" id="links-heading">Links</h2>
+      <nav class="icon-links" aria-label="Social and contact links">
+
+        <a href="mailto:l.hartmann@westgate.edu" aria-label="Email Lena Hartmann" class="icon-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16"/>
+            <polyline points="2,4 12,13 22,4"/>
+          </svg>
+          <span>Email</span>
+        </a>
+
+        <a href="https://scholar.google.com/citations?user=XXXXXXXXX" aria-label="Google Scholar profile" class="icon-link" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/googlescholar.svg" class="simple-icon" alt="" aria-hidden="true" loading="lazy">
+          <span>Google Scholar</span>
+        </a>
+
+        <a href="https://github.com/lena-hartmann" aria-label="GitHub profile" class="icon-link" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg" class="simple-icon" alt="" aria-hidden="true" loading="lazy">
+          <span>GitHub</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/lena-hartmann-cs/" aria-label="LinkedIn profile" class="icon-link" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg" class="simple-icon" alt="" aria-hidden="true" loading="lazy">
+          <span>LinkedIn</span>
+        </a>
+
+        <a href="https://x.com/lenahartmann_ai" aria-label="Twitter / X profile" class="icon-link" target="_blank" rel="noopener">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/x.svg" class="simple-icon" alt="" aria-hidden="true" loading="lazy">
+          <span>Twitter / X</span>
+        </a>
+
+      </nav>
+    </section>
+
+    <!-- News -->
+    <hr class="section-rule">
+    <section aria-labelledby="news-heading">
+      <h2 class="section-label" id="news-heading">News</h2>
+      <ul class="news-list">
+        <li>
+          <time datetime="2026-03-01" class="news-date">Mar 2026</time>
+          <span class="news-text">Invited to serve on the program committee for <strong>FairML Workshop at ICML 2026</strong>.</span>
+        </li>
+        <li>
+          <time datetime="2026-01-15" class="news-date">Jan 2026</time>
+          <span class="news-text">Our paper <em>"CalibratedShield: Confidence-Aware Adversarial Defense for Safety-Critical LLM Applications"</em> (Lena Hartmann, Daniel Yuen, Fatima Osei, and Marcus Chu) is accepted by <strong>ICLR 2026</strong>.</span>
+        </li>
+        <li>
+          <time datetime="2025-11-10" class="news-date">Nov 2025</time>
+          <span class="news-text">Presented our work on bias propagation in multi-agent pipelines at the <strong>NeurIPS 2025 Trustworthy ML Workshop</strong>, Vancouver, Canada.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Selected Publications -->
+    <hr class="section-rule">
+    <section aria-labelledby="pubs-heading">
+      <h2 class="section-label" id="pubs-heading">Selected Publications</h2>
+      <ol class="pub-list">
+
+        <li class="pub-item">
+          <p class="pub-title">CalibratedShield: Confidence-Aware Adversarial Defense for Safety-Critical LLM Applications</p>
+          <p class="pub-authors"><strong>Lena Hartmann</strong>, Daniel Yuen, Fatima Osei, and Marcus Chu</p>
+          <p class="pub-meta">
+            <span class="pub-venue">ICLR 2026</span>
+          </p>
+        </li>
+
+        <li class="pub-item">
+          <p class="pub-title">When Fairness Cascades: Bias Amplification Across Chained Language Model Calls</p>
+          <p class="pub-authors"><strong>Lena Hartmann</strong>, Priya Anand, and Daniel Yuen</p>
+          <p class="pub-meta">
+            <span class="pub-venue">ACL 2025</span>
+            <span class="pub-rank">Core A* · CCF-A</span>
+          </p>
+        </li>
+
+        <li class="pub-item">
+          <p class="pub-title">BoundaryBench: A Diagnostic Suite for Evaluating Safety Boundary Robustness in Instruction-Tuned LLMs</p>
+          <p class="pub-authors"><strong>Lena Hartmann</strong> and Daniel Yuen</p>
+          <p class="pub-meta">
+            <span class="pub-venue">AAAI 2025</span>
+            <span class="pub-rank">Core A · CCF-A</span>
+          </p>
+        </li>
+
+        <li class="pub-item">
+          <p class="pub-title">Soft Constraints Are Not Enough: Towards Hard Guarantees in Fairness-Constrained Text Classification</p>
+          <p class="pub-authors">Riku Saarinen, <strong>Lena Hartmann</strong>, and Tomás Varga</p>
+          <p class="pub-meta">
+            <span class="pub-venue">EMNLP 2024</span>
+            <span class="pub-rank">Core A · CCF-B</span>
+          </p>
+        </li>
+
+        <li class="pub-item">
+          <p class="pub-title">Probing Stereotypical Reasoning in Instruction-Following Models via Counterfactual Minimal Pairs</p>
+          <p class="pub-authors"><strong>Lena Hartmann</strong>, Yuki Tamura, and Riku Saarinen</p>
+          <p class="pub-meta">
+            <span class="pub-venue">Findings of ACL 2024</span>
+          </p>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- Preprints -->
+    <hr class="section-rule">
+    <section aria-labelledby="preprints-heading">
+      <h2 class="section-label" id="preprints-heading">Preprints</h2>
+      <ol class="pub-list">
+
+        <li class="pub-item preprint">
+          <p class="pub-title">FairChain: A Framework for Auditing Fairness Propagation in Multi-Step LLM Pipelines</p>
+          <p class="pub-authors"><strong>Lena Hartmann</strong>, Fatima Osei, Marcus Chu, and Daniel Yuen</p>
+          <p class="pub-meta"><span class="preprint-label">Preprint</span></p>
+        </li>
+
+        <li class="pub-item preprint">
+          <p class="pub-title">Revisiting Red-Teaming Metrics: Why Attack Success Rate Understates Vulnerability in Deployed Systems</p>
+          <p class="pub-authors"><strong>Lena Hartmann</strong> and Daniel Yuen</p>
+          <p class="pub-meta"><span class="preprint-label">Preprint</span></p>
+        </li>
+
+        <li class="pub-item preprint">
+          <p class="pub-title">Do Safety Fine-Tuned Models Forget What They Learned? A Longitudinal Study of Alignment Degradation</p>
+          <p class="pub-authors"><strong>Lena Hartmann</strong>, Priya Anand, Tomás Varga, and Fatima Osei</p>
+          <p class="pub-meta"><span class="preprint-label">Preprint</span></p>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- Invited Talks -->
+    <hr class="section-rule">
+    <section aria-labelledby="talks-heading">
+      <h2 class="section-label" id="talks-heading">Invited Talks</h2>
+      <ul class="talks-list">
+        <li class="talk-item">
+          <span class="talk-year">2026</span>
+          <div class="talk-details">
+            <p class="talk-title">Bias Propagation in Agentic Pipelines: What Single-Model Evaluations Miss</p>
+            <p class="talk-location">Westgate AI Colloquium, Westgate University, UK</p>
+          </div>
+        </li>
+        <li class="talk-item">
+          <span class="talk-year">2025</span>
+          <div class="talk-details">
+            <p class="talk-title">When the Chain Is Only as Fair as Its Weakest Link</p>
+            <p class="talk-location">NeurIPS 2025 Trustworthy ML Workshop, Vancouver, Canada</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <hr class="section-rule">
+    <footer class="site-footer">
+      <p>Lena Hartmann · Westgate University · <a href="mailto:l.hartmann@westgate.edu">l.hartmann@westgate.edu</a></p>
+    </footer>
+
+  </main>
+</body>
+</html>

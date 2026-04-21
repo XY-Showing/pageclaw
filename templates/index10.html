@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Academic homepage for Lena Hartmann, PhD student at Westgate University researching the safety, fairness, and robustness of large language models.">
+  <title>Lena Hartmann | Academic Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #f4efe6;
+      --bg-paper: rgba(255, 251, 245, 0.86);
+      --bg-panel: rgba(255, 248, 240, 0.94);
+      --ink: #241d17;
+      --muted: #65594f;
+      --line: rgba(54, 42, 31, 0.18);
+      --accent: #8d5b2b;
+      --accent-soft: rgba(141, 91, 43, 0.12);
+      --shadow: 0 20px 60px rgba(59, 43, 24, 0.08);
+      --radius-panel: 28px;
+      --radius-pill: 999px;
+      --space-1: 0.5rem;
+      --space-2: 0.875rem;
+      --space-3: 1.25rem;
+      --space-4: 1.75rem;
+      --space-5: 2.5rem;
+      --space-6: 3.5rem;
+      --sans: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+      --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+      --mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--serif);
+      line-height: 1.68;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), rgba(244, 239, 230, 0) 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)),
+        var(--bg-canvas);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(141, 91, 43, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(141, 91, 43, 0.02) 1px, transparent 1px);
+      background-size: 100% 2.75rem, 2.75rem 100%;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), transparent 88%);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+      transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    a:hover {
+      color: #6d4218;
+    }
+
+    a:focus-visible {
+      outline: 3px solid rgba(141, 91, 43, 0.42);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page-shell {
+      width: min(1360px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    .scholarly-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    .profile-rail {
+      position: sticky;
+      top: 1.5rem;
+      display: grid;
+      gap: 1rem;
+      padding: 1.1rem;
+      background: linear-gradient(180deg, rgba(255, 251, 245, 0.98), rgba(247, 239, 229, 0.96));
+      border: 1px solid rgba(54, 42, 31, 0.16);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .document-flow {
+      display: grid;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+
+    .section-shell {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(1.25rem, 2.2vw, 2rem);
+      background: var(--bg-paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-panel);
+      box-shadow: var(--shadow);
+    }
+
+    .section-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(54, 42, 31, 0.1);
+    }
+
+    .section-kicker {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0.2rem 0 0;
+      font-family: var(--sans);
+      font-size: clamp(1.15rem, 1rem + 0.55vw, 1.45rem);
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .nameplate {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .portrait-frame {
+      overflow: hidden;
+      border: 1px solid rgba(54, 42, 31, 0.14);
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(141, 91, 43, 0.1), rgba(255, 255, 255, 0.7)),
+        rgba(255, 255, 255, 0.8);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.76);
+      aspect-ratio: 1 / 1.08;
+    }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nameplate h1 {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: clamp(2rem, 1.55rem + 1.1vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.94;
+    }
+
+    .nameplate p {
+      margin: 0;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .about-copy p {
+      margin: 0;
+      font-size: 1.08rem;
+      overflow-wrap: anywhere;
+    }
+
+    .status-callout {
+      margin-top: 1.2rem;
+      padding: 1rem 1.05rem;
+      background: rgba(141, 91, 43, 0.08);
+      border: 1px solid rgba(141, 91, 43, 0.18);
+      border-radius: 22px;
+      color: #40250a;
+      font-family: var(--sans);
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .interest-chip {
+      display: inline-block;
+      margin: 0 0.12rem;
+      padding: 0.08rem 0.48rem 0.12rem;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
+      color: #5d3913;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .icon-link {
+      min-width: 44px;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem;
+      border: 1px solid rgba(54, 42, 31, 0.14);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 10px 25px rgba(59, 43, 24, 0.06);
+      color: var(--ink);
+      text-decoration: none;
+      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .icon-link:hover {
+      transform: translateY(-2px);
+      background: rgba(141, 91, 43, 0.1);
+      border-color: rgba(141, 91, 43, 0.3);
+      box-shadow: 0 14px 30px rgba(59, 43, 24, 0.12);
+    }
+
+    .icon-link:focus-visible {
+      outline: 3px solid rgba(141, 91, 43, 0.42);
+      outline-offset: 3px;
+    }
+
+    .icon-link svg {
+      width: 1.35rem;
+      height: 1.35rem;
+      fill: currentColor;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .timeline-list {
+      display: grid;
+      gap: 0.9rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: minmax(96px, 132px) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem;
+      border: 1px solid rgba(54, 42, 31, 0.12);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.68);
+    }
+
+    .timeline-date {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: start;
+      padding: 0.48rem 0.75rem;
+      border-radius: var(--radius-pill);
+      background: rgba(141, 91, 43, 0.12);
+      color: #5f3c16;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .timeline-copy {
+      min-width: 0;
+      font-size: 1rem;
+    }
+
+    .timeline-copy p {
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .publication-ledger {
+      display: grid;
+      gap: 0.9rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ledger-entry {
+      position: relative;
+      display: grid;
+      gap: 0.65rem;
+      padding: 1.05rem 1.15rem 1.1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(54, 42, 31, 0.12);
+      border-radius: 20px;
+      box-shadow: 0 14px 26px rgba(59, 43, 24, 0.05);
+    }
+
+    .ledger-entry::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      bottom: 1rem;
+      width: 3px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(180deg, rgba(141, 91, 43, 0.5), rgba(141, 91, 43, 0.08));
+    }
+
+    .entry-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .entry-year {
+      flex-shrink: 0;
+      padding: 0.28rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(54, 42, 31, 0.06);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.03em;
+    }
+
+    .ledger-entry h3 {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .ledger-entry p {
+      margin: 0;
+      font-size: 0.98rem;
+      overflow-wrap: anywhere;
+    }
+
+    .muted-note {
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 900px) {
+      .page-shell {
+        width: calc(100% - 1rem);
+        padding: 0.75rem 0 2.5rem;
+      }
+
+      .scholarly-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .profile-rail {
+        position: static;
+      }
+
+      .link-grid {
+        grid-template-columns: repeat(5, minmax(44px, 1fr));
+      }
+
+      .timeline-item {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .timeline-date {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 0.98rem;
+      }
+
+      .section-shell {
+        padding: 1.1rem;
+        border-radius: 22px;
+      }
+
+      .link-grid {
+        gap: 0.55rem;
+      }
+
+      .icon-link {
+        padding: 0.75rem;
+        border-radius: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .icon-link:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <main class="scholarly-grid">
+      <aside class="profile-rail">
+        <section id="about-me" class="section-shell">
+          <div class="nameplate">
+            <div class="portrait-frame">
+              <img src="avatar-boy.png" alt="Portrait of Lena Hartmann" width="800" height="864">
+            </div>
+            <div>
+              <h1>Lena Hartmann</h1>
+            </div>
+          </div>
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Section 01</p>
+              <h2 class="section-title">About Me</h2>
+            </div>
+          </div>
+          <div class="about-copy">
+            <p>
+              I am a fourth-year PhD student at Westgate University, supervised by Prof.
+              <a href="https://westgate.edu/~dyuen">Daniel Yuen</a> and co-supervised by Prof.
+              <a href="https://cs.northhaven.edu/fosei">Fatima Osei</a>. Previously, I earned my MSc from the University of Avenmark with Prof.
+              <a href="https://avenmark.edu/~rsaarinen">Riku Saarinen</a> and my BEng from Celadon Institute of Technology. My research focuses on the safety, fairness, and robustness of large language models and AI-driven decision systems. My research interests primarily focus on
+              <span class="interest-chip">AI Safety</span>,
+              <span class="interest-chip">AI Fairness</span>,
+              <span class="interest-chip">LLM Robustness</span>.
+            </p>
+            <p class="status-callout">
+              I am currently on the job market and open to postdoctoral positions in AI safety, AI fairness, and trustworthy machine learning.
+            </p>
+          </div>
+        </section>
+
+        <section id="links" class="section-shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Section 02</p>
+              <h2 class="section-title">Links</h2>
+            </div>
+          </div>
+          <div class="link-grid">
+            <a class="icon-link" aria-label="Email" title="Email" href="mailto:l.hartmann@westgate.edu">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.25 5.25h19.5A1.25 1.25 0 0 1 23 6.5v11A1.25 1.25 0 0 1 21.75 18.75H2.25A1.25 1.25 0 0 1 1 17.5v-11A1.25 1.25 0 0 1 2.25 5.25Zm.54 1.5 8.64 6.418a1 1 0 0 0 1.19 0l8.59-6.418Zm18.71 1.862-7.99 5.967a2.5 2.5 0 0 1-2.98.002L2.5 8.611V17.25h19Z"/>
+              </svg>
+              <span class="sr-only">Email</span>
+            </a>
+            <a class="icon-link" aria-label="Google Scholar" title="Google Scholar" href="https://scholar.google.com/citations?user=XXXXXXXXX" target="_blank" rel="noreferrer">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.242 13.769 0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269ZM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z"/>
+              </svg>
+              <span class="sr-only">Google Scholar</span>
+            </a>
+            <a class="icon-link" aria-label="GitHub" title="GitHub" href="https://github.com/lena-hartmann" target="_blank" rel="noreferrer">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+              <span class="sr-only">GitHub</span>
+            </a>
+            <a class="icon-link" aria-label="LinkedIn" title="LinkedIn" href="https://www.linkedin.com/in/lena-hartmann-cs/" target="_blank" rel="noreferrer">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span class="sr-only">LinkedIn</span>
+            </a>
+            <a class="icon-link" aria-label="Twitter / X" title="Twitter / X" href="https://x.com/lenahartmann_ai" target="_blank" rel="noreferrer">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+              </svg>
+              <span class="sr-only">Twitter / X</span>
+            </a>
+          </div>
+        </section>
+      </aside>
+
+      <div class="document-flow">
+        <section id="news" class="section-shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Section 03</p>
+              <h2 class="section-title">News</h2>
+            </div>
+            <span class="muted-note">Recent milestones</span>
+          </div>
+          <ul class="timeline-list">
+            <li class="timeline-item">
+              <span class="timeline-date">Mar 2026</span>
+              <div class="timeline-copy">
+                <p>Invited to serve on the program committee for FairML Workshop at ICML 2026.</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Jan 2026</span>
+              <div class="timeline-copy">
+                <p>Our paper "CalibratedShield: Confidence-Aware Adversarial Defense for Safety-Critical LLM Applications" is accepted by ICLR 2026.</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Nov 2025</span>
+              <div class="timeline-copy">
+                <p>Presented our work on bias propagation in multi-agent pipelines at the NeurIPS 2025 Trustworthy ML Workshop, Vancouver, Canada.</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <section id="selected-publications" class="section-shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Section 04</p>
+              <h2 class="section-title">Selected Publications</h2>
+            </div>
+            <span class="muted-note">Structured as a research ledger</span>
+          </div>
+          <ul class="publication-ledger">
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>CalibratedShield: Confidence-Aware Adversarial Defense for Safety-Critical LLM Applications</h3>
+                <span class="entry-year">2026</span>
+              </div>
+              <p>Lena Hartmann, Daniel Yuen, Fatima Osei, and Marcus Chu, International Conference on Learning Representations (ICLR 2026).</p>
+            </li>
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>When Fairness Cascades: Bias Amplification Across Chained Language Model Calls</h3>
+                <span class="entry-year">2025</span>
+              </div>
+              <p>Lena Hartmann, Priya Anand, and Daniel Yuen, Annual Meeting of the Association for Computational Linguistics (ACL 2025), Core A*, CCF-A.</p>
+            </li>
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>BoundaryBench: A Diagnostic Suite for Evaluating Safety Boundary Robustness in Instruction-Tuned LLMs</h3>
+                <span class="entry-year">2025</span>
+              </div>
+              <p>Lena Hartmann and Daniel Yuen, AAAI Conference on Artificial Intelligence (AAAI 2025), Core A, CCF-A.</p>
+            </li>
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>Soft Constraints Are Not Enough: Towards Hard Guarantees in Fairness-Constrained Text Classification</h3>
+                <span class="entry-year">2024</span>
+              </div>
+              <p>Riku Saarinen, Lena Hartmann, and Tomás Varga, Conference on Empirical Methods in Natural Language Processing (EMNLP 2024), Core A, CCF-B.</p>
+            </li>
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>Probing Stereotypical Reasoning in Instruction-Following Models via Counterfactual Minimal Pairs</h3>
+                <span class="entry-year">2024</span>
+              </div>
+              <p>Lena Hartmann, Yuki Tamura, and Riku Saarinen, Findings of the Association for Computational Linguistics (Findings of ACL 2024).</p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="preprints" class="section-shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Section 05</p>
+              <h2 class="section-title">Preprints</h2>
+            </div>
+            <span class="muted-note">Current manuscripts</span>
+          </div>
+          <ul class="publication-ledger">
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>FairChain: A Framework for Auditing Fairness Propagation in Multi-Step LLM Pipelines</h3>
+                <span class="entry-year">Preprint</span>
+              </div>
+              <p>Lena Hartmann, Fatima Osei, Marcus Chu, and Daniel Yuen.</p>
+            </li>
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>Revisiting Red-Teaming Metrics: Why Attack Success Rate Understates Vulnerability in Deployed Systems</h3>
+                <span class="entry-year">Preprint</span>
+              </div>
+              <p>Lena Hartmann and Daniel Yuen.</p>
+            </li>
+            <li class="ledger-entry">
+              <div class="entry-topline">
+                <h3>Do Safety Fine-Tuned Models Forget What They Learned? A Longitudinal Study of Alignment Degradation</h3>
+                <span class="entry-year">Preprint</span>
+              </div>
+              <p>Lena Hartmann, Priya Anand, Tomás Varga, and Fatima Osei.</p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="invited-talk" class="section-shell">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">Section 06</p>
+              <h2 class="section-title">Invited Talk</h2>
+            </div>
+            <span class="muted-note">Talk record</span>
+          </div>
+          <ul class="timeline-list">
+            <li class="timeline-item">
+              <span class="timeline-date">Mar 2026</span>
+              <div class="timeline-copy">
+                <p>Bias Propagation in Agentic Pipelines: What Single-Model Evaluations Miss, Westgate AI Colloquium, Westgate University, UK.</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Nov 2025</span>
+              <div class="timeline-copy">
+                <p>When the Chain Is Only as Fair as Its Weakest Link, NeurIPS 2025 Trustworthy ML Workshop, Vancouver, Canada.</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Jul 2025</span>
+              <div class="timeline-copy">
+                <p>Safety Boundaries Under Distribution Shift, Summer School on Reliable Machine Learning, ETH Zürich, Switzerland.</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Apr 2025</span>
+              <div class="timeline-copy">
+                <p>Practical Fairness Auditing for Production LLM Systems, Industry Research Talk, Northhaven AI Safety Lab, Northhaven, UK.</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Jan 2025</span>
+              <div class="timeline-copy">
+                <p>CalibratedShield: Confidence as a Defense Signal, ICLR 2025 Oral Preview Session (virtual).</p>
+              </div>
+            </li>
+            <li class="timeline-item">
+              <span class="timeline-date">Oct 2024</span>
+              <div class="timeline-copy">
+                <p>Evaluating Instruction-Tuned Models at Their Boundaries, Westgate NLP Seminar Series, Westgate University, UK.</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
